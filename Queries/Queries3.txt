@@ -1,0 +1,30 @@
+SQL> select * from emp where ename='smith';
+
+no rows selected
+
+SQL> select * from emp where ename = 'SMITH';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7369 SMITH      CLERK           7902 17-DEC-80        800                 
+        20                                                                      
+                                                                                
+
+SQL> select empno, ename, job from emp where job = 'SALESMAN';
+
+     EMPNO ENAME      JOB                                                       
+---------- ---------- ---------                                                 
+      7499 ALLEN      SALESMAN                                                  
+      7521 WARD       SALESMAN                                                  
+      7654 MARTIN     SALESMAN                                                  
+      7844 TURNER     SALESMAN                                                  
+
+SQL> select * from dept where loc = 'NEW YORK';
+
+    DEPTNO DNAME          LOC                                                   
+---------- -------------- -------------                                         
+        10 ACCOUNTING     NEW YORK                                              
+
+SQL> spool off

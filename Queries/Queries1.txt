@@ -1,0 +1,28 @@
+SQL> select * from dept;
+
+    DEPTNO DNAME          LOC                                                   
+---------- -------------- -------------                                         
+        10 ACCOUNTING     NEW YORK                                              
+        20 RESEARCH       DALLAS                                                
+        30 SALES          CHICAGO                                               
+        40 OPERATIONS     BOSTON                                                
+
+SQL> select dname from dept;
+
+DNAME                                                                           
+--------------                                                                  
+ACCOUNTING                                                                      
+RESEARCH                                                                        
+SALES                                                                           
+OPERATIONS                                                                      
+
+SQL> select dname, loc from dept;
+
+DNAME          LOC                                                              
+-------------- -------------                                                    
+ACCOUNTING     NEW YORK                                                         
+RESEARCH       DALLAS                                                           
+SALES          CHICAGO                                                          
+OPERATIONS     BOSTON                                                           
+
+SQL> spool off

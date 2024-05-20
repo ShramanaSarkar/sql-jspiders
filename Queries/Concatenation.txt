@@ -1,0 +1,162 @@
+SQL> SELECT ENAME||SAL FROM EMP;
+
+ENAME||SAL                                                                      
+--------------------------------------------------                              
+SMITH800                                                                        
+ALLEN1600                                                                       
+WARD1250                                                                        
+JONES2975                                                                       
+MARTIN1250                                                                      
+BLAKE2850                                                                       
+CLARK2450                                                                       
+SCOTT3000                                                                       
+KING5000                                                                        
+TURNER1500                                                                      
+ADAMS1100                                                                       
+
+ENAME||SAL                                                                      
+--------------------------------------------------                              
+JAMES950                                                                        
+FORD3000                                                                        
+MILLER1300                                                                      
+
+14 rows selected.
+
+SQL> SELECT ENAME||'IS WORKINGAS A'||JOB||'IN DET'||DEPTNO FROMEMP;
+SELECT ENAME||'IS WORKINGAS A'||JOB||'IN DET'||DEPTNO FROMEMP
+                                                            *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT ENAME||'IS WORKINGAS A'||JOB||'IN DET'||DEPTNO FROM EMP;
+
+ENAME||'ISWORKINGASA'||JOB||'INDET'||DEPTNO                                     
+------------------------------------------------------------------------------- 
+SMITHIS WORKINGAS ACLERKIN DET20                                                
+ALLENIS WORKINGAS ASALESMANIN DET30                                             
+WARDIS WORKINGAS ASALESMANIN DET30                                              
+JONESIS WORKINGAS AMANAGERIN DET20                                              
+MARTINIS WORKINGAS ASALESMANIN DET30                                            
+BLAKEIS WORKINGAS AMANAGERIN DET30                                              
+CLARKIS WORKINGAS AMANAGERIN DET10                                              
+SCOTTIS WORKINGAS AANALYSTIN DET20                                              
+KINGIS WORKINGAS APRESIDENTIN DET10                                             
+TURNERIS WORKINGAS ASALESMANIN DET30                                            
+ADAMSIS WORKINGAS ACLERKIN DET20                                                
+
+ENAME||'ISWORKINGASA'||JOB||'INDET'||DEPTNO                                     
+------------------------------------------------------------------------------- 
+JAMESIS WORKINGAS ACLERKIN DET30                                                
+FORDIS WORKINGAS AANALYSTIN DET20                                               
+MILLERIS WORKINGAS ACLERKIN DET10                                               
+
+14 rows selected.
+
+SQL> SELECT ENAME||'IS WORKING AS A' || JOB ||' IN DEPT '||DEPTNO FROM EMP;
+
+ENAME||'ISWORKINGASA'||JOB||'INDEPT'||DEPTNO                                    
+--------------------------------------------------------------------------------
+SMITHIS WORKING AS ACLERK IN DEPT 20                                            
+ALLENIS WORKING AS ASALESMAN IN DEPT 30                                         
+WARDIS WORKING AS ASALESMAN IN DEPT 30                                          
+JONESIS WORKING AS AMANAGER IN DEPT 20                                          
+MARTINIS WORKING AS ASALESMAN IN DEPT 30                                        
+BLAKEIS WORKING AS AMANAGER IN DEPT 30                                          
+CLARKIS WORKING AS AMANAGER IN DEPT 10                                          
+SCOTTIS WORKING AS AANALYST IN DEPT 20                                          
+KINGIS WORKING AS APRESIDENT IN DEPT 10                                         
+TURNERIS WORKING AS ASALESMAN IN DEPT 30                                        
+ADAMSIS WORKING AS ACLERK IN DEPT 20                                            
+
+ENAME||'ISWORKINGASA'||JOB||'INDEPT'||DEPTNO                                    
+--------------------------------------------------------------------------------
+JAMESIS WORKING AS ACLERK IN DEPT 30                                            
+FORDIS WORKING AS AANALYST IN DEPT 20                                           
+MILLERIS WORKING AS ACLERK IN DEPT 10                                           
+
+14 rows selected.
+
+SQL> SELECT ENAME||' IS WORKING AS A '||JOB||' AND EARNING SALARY MORE THAN '||SAL||' IN DEPT '||DEPTNO FROM EMP;
+
+ENAME||'ISWORKINGASA'||JOB||'ANDEARNINGSALARYMORETHAN'||SAL||'INDEPT'||DEPTNO   
+--------------------------------------------------------------------------------
+SMITH IS WORKING AS A CLERK AND EARNING SALARY MORE THAN 800 IN DEPT 20         
+ALLEN IS WORKING AS A SALESMAN AND EARNING SALARY MORE THAN 1600 IN DEPT 30     
+WARD IS WORKING AS A SALESMAN AND EARNING SALARY MORE THAN 1250 IN DEPT 30      
+JONES IS WORKING AS A MANAGER AND EARNING SALARY MORE THAN 2975 IN DEPT 20      
+MARTIN IS WORKING AS A SALESMAN AND EARNING SALARY MORE THAN 1250 IN DEPT 30    
+BLAKE IS WORKING AS A MANAGER AND EARNING SALARY MORE THAN 2850 IN DEPT 30      
+CLARK IS WORKING AS A MANAGER AND EARNING SALARY MORE THAN 2450 IN DEPT 10      
+SCOTT IS WORKING AS A ANALYST AND EARNING SALARY MORE THAN 3000 IN DEPT 20      
+KING IS WORKING AS A PRESIDENT AND EARNING SALARY MORE THAN 5000 IN DEPT 10     
+TURNER IS WORKING AS A SALESMAN AND EARNING SALARY MORE THAN 1500 IN DEPT 30    
+ADAMS IS WORKING AS A CLERK AND EARNING SALARY MORE THAN 1100 IN DEPT 20        
+
+ENAME||'ISWORKINGASA'||JOB||'ANDEARNINGSALARYMORETHAN'||SAL||'INDEPT'||DEPTNO   
+--------------------------------------------------------------------------------
+JAMES IS WORKING AS A CLERK AND EARNING SALARY MORE THAN 950 IN DEPT 30         
+FORD IS WORKING AS A ANALYST AND EARNING SALARY MORE THAN 3000 IN DEPT 20       
+MILLER IS WORKING AS A CLERK AND EARNING SALARY MORE THAN 1300 IN DEPT 10       
+
+14 rows selected.
+
+SQL> SELECT ENAME||' IS AN EMPLOYEE WHO IS HAVING AN ID OF '||EMPNO||' AND JOINED ON '||HIREDATE||' AND EARNING SOME AMOUNT OF COMMISION IN DEPTMENT '||DEPTNO FROM EMP;
+
+ENAME||'ISANEMPLOYEEWHOISHAVINGANIDOF'||EMPNO||'ANDJOINEDON'||HIREDATE||'ANDEARN
+--------------------------------------------------------------------------------
+SMITH IS AN EMPLOYEE WHO IS HAVING AN ID OF 7369 AND JOINED ON 17-DEC-80 AND EAR
+NING SOME AMOUNT OF COMMISION IN DEPTMENT 20                                    
+                                                                                
+ALLEN IS AN EMPLOYEE WHO IS HAVING AN ID OF 7499 AND JOINED ON 20-FEB-81 AND EAR
+NING SOME AMOUNT OF COMMISION IN DEPTMENT 30                                    
+                                                                                
+WARD IS AN EMPLOYEE WHO IS HAVING AN ID OF 7521 AND JOINED ON 22-FEB-81 AND EARN
+ING SOME AMOUNT OF COMMISION IN DEPTMENT 30                                     
+                                                                                
+JONES IS AN EMPLOYEE WHO IS HAVING AN ID OF 7566 AND JOINED ON 02-APR-81 AND EAR
+NING SOME AMOUNT OF COMMISION IN DEPTMENT 20                                    
+
+ENAME||'ISANEMPLOYEEWHOISHAVINGANIDOF'||EMPNO||'ANDJOINEDON'||HIREDATE||'ANDEARN
+--------------------------------------------------------------------------------
+                                                                                
+MARTIN IS AN EMPLOYEE WHO IS HAVING AN ID OF 7654 AND JOINED ON 28-SEP-81 AND EA
+RNING SOME AMOUNT OF COMMISION IN DEPTMENT 30                                   
+                                                                                
+BLAKE IS AN EMPLOYEE WHO IS HAVING AN ID OF 7698 AND JOINED ON 01-MAY-81 AND EAR
+NING SOME AMOUNT OF COMMISION IN DEPTMENT 30                                    
+                                                                                
+CLARK IS AN EMPLOYEE WHO IS HAVING AN ID OF 7782 AND JOINED ON 09-JUN-81 AND EAR
+NING SOME AMOUNT OF COMMISION IN DEPTMENT 10                                    
+                                                                                
+SCOTT IS AN EMPLOYEE WHO IS HAVING AN ID OF 7788 AND JOINED ON 19-APR-87 AND EAR
+
+ENAME||'ISANEMPLOYEEWHOISHAVINGANIDOF'||EMPNO||'ANDJOINEDON'||HIREDATE||'ANDEARN
+--------------------------------------------------------------------------------
+NING SOME AMOUNT OF COMMISION IN DEPTMENT 20                                    
+                                                                                
+KING IS AN EMPLOYEE WHO IS HAVING AN ID OF 7839 AND JOINED ON 17-NOV-81 AND EARN
+ING SOME AMOUNT OF COMMISION IN DEPTMENT 10                                     
+                                                                                
+TURNER IS AN EMPLOYEE WHO IS HAVING AN ID OF 7844 AND JOINED ON 08-SEP-81 AND EA
+RNING SOME AMOUNT OF COMMISION IN DEPTMENT 30                                   
+                                                                                
+ADAMS IS AN EMPLOYEE WHO IS HAVING AN ID OF 7876 AND JOINED ON 23-MAY-87 AND EAR
+NING SOME AMOUNT OF COMMISION IN DEPTMENT 20                                    
+                                                                                
+
+ENAME||'ISANEMPLOYEEWHOISHAVINGANIDOF'||EMPNO||'ANDJOINEDON'||HIREDATE||'ANDEARN
+--------------------------------------------------------------------------------
+JAMES IS AN EMPLOYEE WHO IS HAVING AN ID OF 7900 AND JOINED ON 03-DEC-81 AND EAR
+NING SOME AMOUNT OF COMMISION IN DEPTMENT 30                                    
+                                                                                
+FORD IS AN EMPLOYEE WHO IS HAVING AN ID OF 7902 AND JOINED ON 03-DEC-81 AND EARN
+ING SOME AMOUNT OF COMMISION IN DEPTMENT 20                                     
+                                                                                
+MILLER IS AN EMPLOYEE WHO IS HAVING AN ID OF 7934 AND JOINED ON 23-JAN-82 AND EA
+RNING SOME AMOUNT OF COMMISION IN DEPTMENT 10                                   
+                                                                                
+
+14 rows selected.
+
+SQL> SPOOL OFF
