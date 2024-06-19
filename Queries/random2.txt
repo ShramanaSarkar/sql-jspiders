@@ -1,0 +1,109 @@
+SQL> SELECT ENAME FROM EMP WHERE SAL> ALL (SELECT ENAME FROM EMP WHERE DEPTNO =30);
+SELECT ENAME FROM EMP WHERE SAL> ALL (SELECT ENAME FROM EMP WHERE DEPTNO =30)
+                                             *
+ERROR at line 1:
+ORA-01722: invalid number
+
+
+SQL> SELECT ENAME FROM EMP WHERE SAL> ALL (SELECT SALFROM EMP WHERE DEPTNO =30);
+SELECT ENAME FROM EMP WHERE SAL> ALL (SELECT SALFROM EMP WHERE DEPTNO =30)
+                                                         *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> SELECT ENAME FROM EMP WHERE SAL> ALL (SELECT SAL FROM EMP WHERE DEPTNO =30);
+
+ENAME
+----------
+JONES
+SCOTT
+KING
+FORD
+
+SQL> SELECT * 
+  2  FROM EMP
+  3  WHERE HIREDATE>ALL
+  4  (SELECT HIREDATE FROM HIREDATE WHERE DEPTNO=10
+  5  
+SQL> 
+SQL> SELECT ENAME, SAL FROM EMP WHERE MAX(SAL);
+SELECT ENAME, SAL FROM EMP WHERE MAX(SAL)
+                                 *
+ERROR at line 1:
+ORA-00934: group function is not allowed here
+
+
+SQL> SELECT HIREDATE FROM EMP WHERE MIN(HIREDATE);
+SELECT HIREDATE FROM EMP WHERE MIN(HIREDATE)
+                               *
+ERROR at line 1:
+ORA-00934: group function is not allowed here
+
+
+SQL> SELECT MIN(HIREDATE) FROM EMP;
+
+MIN(HIRED
+---------
+17-DEC-80
+
+SQL> SELECT MIN(HIREDAT), ENAME FROM EMP;
+SELECT MIN(HIREDAT), ENAME FROM EMP
+           *
+ERROR at line 1:
+ORA-00904: "HIREDAT": invalid identifier
+
+
+SQL> SELECT MIN(HIREDATE), ENAME FROM EMP;
+SELECT MIN(HIREDATE), ENAME FROM EMP
+                      *
+ERROR at line 1:
+ORA-00937: not a single-group group function
+
+
+SQL> SLECT ENAME, SAL FROM EMP WHERE EMPNO =(SELECT MAX(EMPNO) FROM EMP);
+SP2-0734: unknown command beginning "SLECT ENAM..." - rest of line ignored.
+SQL> SELECTENAME, SAL FROM EMP WHERE EMPNO =(SELECT MAX(EMPNO) FROM EMP);
+SP2-0734: unknown command beginning "SELECTENAM..." - rest of line ignored.
+SQL> 
+SQL> 
+SQL> SELECT ENAME, SAL FROM EMP WHERE EMPNO =(SELECT MAX(EMPNO) FROM EMP);
+
+ENAME             SAL
+---------- ----------
+MILLER           1300
+
+SQL> SELECT ENAME, HIREDATE FROM EMP WHERE HIREDATE=(SELECT MIN(HIREDATE) FROM EMP);
+
+ENAME      HIREDATE
+---------- ---------
+SMITH      17-DEC-80
+
+SQL> SELECT ENAME, SAL FROM EMP WHERE SAL IN (SELECT MAX(SAL) FROM EMP);
+
+ENAME             SAL
+---------- ----------
+KING             5000
+
+SQL> SELECT ENAME, SAL FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP);
+
+ENAME             SAL
+---------- ----------
+SMITH             800
+ALLEN            1600
+WARD             1250
+JONES            2975
+MARTIN           1250
+BLAKE            2850
+CLARK            2450
+SCOTT            3000
+TURNER           1500
+ADAMS            1100
+JAMES             950
+
+ENAME             SAL
+---------- ----------
+FORD             3000
+MILLER           1300
+
+13 rows selected.

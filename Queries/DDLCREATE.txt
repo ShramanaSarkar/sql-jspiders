@@ -1,0 +1,221 @@
+SQL> 
+SQL> SELECT * FROM ALL_USERS;
+
+USERNAME                          USER_ID CREATED                               
+------------------------------ ---------- ---------                             
+BI                                     60 04-MAY-24                             
+PM                                     59 04-MAY-24                             
+SH                                     58 04-MAY-24                             
+IX                                     57 04-MAY-24                             
+OE                                     56 04-MAY-24                             
+HR                                     55 04-MAY-24                             
+SCOTT                                  54 30-AUG-05                             
+MGMT_VIEW                              53 30-AUG-05                             
+MDDATA                                 50 30-AUG-05                             
+SYSMAN                                 51 30-AUG-05                             
+MDSYS                                  46 30-AUG-05                             
+
+USERNAME                          USER_ID CREATED                               
+------------------------------ ---------- ---------                             
+SI_INFORMTN_SCHEMA                     45 30-AUG-05                             
+ORDPLUGINS                             44 30-AUG-05                             
+ORDSYS                                 43 30-AUG-05                             
+OLAPSYS                                47 30-AUG-05                             
+ANONYMOUS                              39 30-AUG-05                             
+XDB                                    38 30-AUG-05                             
+CTXSYS                                 36 30-AUG-05                             
+EXFSYS                                 34 30-AUG-05                             
+WMSYS                                  25 30-AUG-05                             
+DBSNMP                                 24 30-AUG-05                             
+TSMSYS                                 21 30-AUG-05                             
+
+USERNAME                          USER_ID CREATED                               
+------------------------------ ---------- ---------                             
+DMSYS                                  35 30-AUG-05                             
+DIP                                    19 30-AUG-05                             
+OUTLN                                  11 30-AUG-05                             
+SYSTEM                                  5 30-AUG-05                             
+SYS                                     0 30-AUG-05                             
+
+27 rows selected.
+
+SQL> SELECT * FROM TAB;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+DEPT                           TABLE                                            
+EMP                            TABLE                                            
+BONUS                          TABLE                                            
+SALGRADE                       TABLE                                            
+BIN$DoGxY/cyQwedMV11OhDYKw==$0 TABLE                                            
+
+SQL> CREATE TABLE COURSE(CID NUMBER(6)PRIMARY KEY, CNAME VARCHAR(10) NOT NULL, FEES NUMBER(6) CHECK (FEES<100000), CTYPE VARCHAR(10) DEFAULT('OFFLINE'));
+
+Table created.
+
+SQL> SELECT * FROM TAB;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+DEPT                           TABLE                                            
+EMP                            TABLE                                            
+BONUS                          TABLE                                            
+SALGRADE                       TABLE                                            
+BIN$DoGxY/cyQwedMV11OhDYKw==$0 TABLE                                            
+COURSE                         TABLE                                            
+
+6 rows selected.
+
+SQL> CREATE TABLE STUDENT(SID NUMBER(6) PRIMARY KEY, SNAME VARCHAR(10) UNIQUE, AGE NUMBER(2) CHECK(AGE>18), GENDER VARCHAR(10) DEFAULT('FEMALE'), MOBILENO NUMBER(12) NOT NULL, DOB DATE, EMAILID VARCHAR(20), CID
+  2  
+SQL> CREATE TABLE STUDENT(SID NUMBER(6) PRIMARY KEY, SNAME VARCHAR(10) NOT NULL, AGE NUMBER(2) CHECK(AGE>18), GENDER VARCHAR(10) DEFAULT('FEMALE'), MOBILENO NUMBER(12) UNIQUE, DOB DATE, EMAILID VARCHAR(20), CID NUMBER(6) REFERENCES COURSE(CID));
+
+Table created.
+
+SQL> SELECT * FROM TAB;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+DEPT                           TABLE                                            
+EMP                            TABLE                                            
+BONUS                          TABLE                                            
+SALGRADE                       TABLE                                            
+BIN$DoGxY/cyQwedMV11OhDYKw==$0 TABLE                                            
+COURSE                         TABLE                                            
+STUDENT                        TABLE                                            
+
+7 rows selected.
+
+SQL> INSERT INTO COURSE VALUES(1000, JAVA, 34000, ONLINE);
+INSERT INTO COURSE VALUES(1000, JAVA, 34000, ONLINE)
+                                             *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> INSERT INTO COURSE VALUES(1000, JAVA, 34000, OFFLINE);
+INSERT INTO COURSE VALUES(1000, JAVA, 34000, OFFLINE)
+                                             *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> DESC COURSE;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CID                                       NOT NULL NUMBER(6)
+ CNAME                                     NOT NULL VARCHAR2(10)
+ FEES                                               NUMBER(6)
+ CTYPE                                              VARCHAR2(10)
+
+SQL> INSERT INTO COURSE VALUES(1000, JAVA, 34000, 'ONLINE');
+INSERT INTO COURSE VALUES(1000, JAVA, 34000, 'ONLINE')
+                                *
+ERROR at line 1:
+ORA-00984: column not allowed here 
+
+
+SQL> INSERT INTO COURSE VALUES(1000, 'JAVA', 34000, 'ONLINE');
+
+1 row created.
+
+SQL> INSERT INTO COURSE VALUES(1001, 'JAVA_OFF', 30000, 'OFFLINE');
+
+1 row created.
+
+SQL> INSERT INTO COURSE VALUES(1002, 'PYTHON', 27000, 'ONLINE');
+
+1 row created.
+
+SQL> INSET INTO COURSE VALUES(1002, 'TESTING', 31000, 'OFFLINE');
+SP2-0734: unknown command beginning "INSET INTO..." - rest of line ignored.
+SQL> INSERT INTO COURSE VALUES(1002, 'TESTING', 31000, 'OFFLINE');
+INSERT INTO COURSE VALUES(1002, 'TESTING', 31000, 'OFFLINE')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SCOTT.SYS_C005804) violated 
+
+
+SQL> INSERT INTO COURSE VALUES(1003, 'TESTING', 31000, 'OFFLINE');
+
+1 row created.
+
+SQL> DESC STUDENT;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SID                                       NOT NULL NUMBER(6)
+ SNAME                                     NOT NULL VARCHAR2(10)
+ AGE                                                NUMBER(2)
+ GENDER                                             VARCHAR2(10)
+ MOBILENO                                           NUMBER(12)
+ DOB                                                DATE
+ EMAILID                                            VARCHAR2(20)
+ CID                                                NUMBER(6)
+
+SQL> INSERT INTO VALUES(2001, 'ROHAN', 20, 'MALE', 9876543201, '01/FEB/2004', 'ROHAN4002J@MAIL.COM',1000);
+INSERT INTO VALUES(2001, 'ROHAN', 20, 'MALE', 9876543201, '01/FEB/2004', 'ROHAN4002J@MAIL.COM',1000)
+            *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> 
+SQL> INSERT INTO STUDENTVALUES(2001, 'ROHAN', 20, 'MALE', 9876543201, '01/FEB/2004', 'ROHAN4002J@MAIL.COM',1000);
+INSERT INTO STUDENTVALUES(2001, 'ROHAN', 20, 'MALE', 9876543201, '01/FEB/2004', 'ROHAN4002J@MAIL.COM',1000)
+                          *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword 
+
+
+SQL> INSERT INTO STUDENT VALUES(2001, 'ROHAN', 20, 'MALE', 9876543201, '01/FEB/2004', 'ROHAN4002J@MAIL.COM',1000);
+
+1 row created.
+
+SQL> INSERT INTO STUDENT VALUES(2002, 'SONAL' 22, 'FEMALE' 5376783839, '05/SEP/2002', 'SONA05@MAIL.COM', 1003);
+INSERT INTO STUDENT VALUES(2002, 'SONAL' 22, 'FEMALE' 5376783839, '05/SEP/2002', 'SONA05@MAIL.COM', 1003)
+                                         *
+ERROR at line 1:
+ORA-00917: missing comma 
+
+
+SQL>  INSERT INTO STUDENT VALUES(2002, 'SONAL', 22, 'FEMALE' 5376783839, '05/SEP/2002', 'SONA05@MAIL.COM', 1003);
+ INSERT INTO STUDENT VALUES(2002, 'SONAL', 22, 'FEMALE' 5376783839, '05/SEP/2002', 'SONA05@MAIL.COM', 1003)
+                                                        *
+ERROR at line 1:
+ORA-00917: missing comma 
+
+
+SQL>  INSERT INTO STUDENT VALUES(2002, 'SONAL', 22, 'FEMALE', 5376783839, '05/SEP/2002', 'SONA05@MAIL.COM', 1003);
+
+1 row created.
+
+SQL> INSERT INTO STUDENT VALUES(2003, 'ISHA', 21, 'FEMALE', 7654352345, '23/AUG/2001', 'ISHA23@MAIL.COM', 1000);
+
+1 row created.
+
+SQL> SELECT * FROM COURSE;
+
+       CID CNAME            FEES CTYPE                                          
+---------- ---------- ---------- ----------                                     
+      1000 JAVA            34000 ONLINE                                         
+      1001 JAVA_OFF        30000 OFFLINE                                        
+      1002 PYTHON          27000 ONLINE                                         
+      1003 TESTING         31000 OFFLINE                                        
+
+SQL> SELECT * FROM STUDENT;
+
+       SID SNAME             AGE GENDER       MOBILENO DOB                      
+---------- ---------- ---------- ---------- ---------- ---------                
+EMAILID                     CID                                                 
+-------------------- ----------                                                 
+      2001 ROHAN              20 MALE       9876543201 01-FEB-04                
+ROHAN4002J@MAIL.COM        1000                                                 
+                                                                                
+      2002 SONAL              22 FEMALE     5376783839 05-SEP-02                
+SONA05@MAIL.COM            1003                                                 
+                                                                                
+      2003 ISHA               21 FEMALE     7654352345 23-AUG-01                
+ISHA23@MAIL.COM            1000                                                 
+                                                                                
+
+SQL> SPOOL OFF

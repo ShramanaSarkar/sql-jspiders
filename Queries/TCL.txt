@@ -1,0 +1,59 @@
+SQL> 
+SQL> INSERT INTO COURSE VALUES(1000, 'JAVA', 34000, 'ONLINE', 'DELHI', 'C20');
+
+1 row created.
+
+SQL>   INSERT INTO COURSE VALUES(1001, 'JAVA_OFF', 30000, 'OFFLINE', 'BANGLORE', 'C21');
+
+1 row created.
+
+SQL>  INSERT INTO COURSE VALUES(1002, 'PYTHON', 27000, 'ONLINE', 'KOLKATA', 'C30');
+
+1 row created.
+
+SQL> 
+SQL> SQL> INSERT INTO COURSE VALUES(1003, 'TESTING', 31000, 'OFFLINE', 'BANGLORE', 'C52');
+SP2-0734: unknown command beginning "SQL> INSER..." - rest of line ignored.
+SQL>  INSERT INTO COURSE VALUES(1003, 'TESTING', 31000, 'OFFLINE', 'BANGLORE', 'C52');
+
+1 row created.
+
+SQL> INSERT INTO STUDENT VALUES(2002, 'SONAL', 22, 'FEMALE', 5376783839, '05/SEP/2002', 'SONA05@MAIL
+  2  .COM', 1003);
+
+1 row created.
+
+SQL>  INSERT INTO STUDENT VALUES(2003, 'ISHA', 21, 'FEMALE', 7654352345, '23/AUG/2001', 'ISHA23@MAIL.
+  2  COM', 1000);
+
+1 row created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL>  INSERT INTO COURSE VALUES(1004, 'SPOKEN_ENGLISH', 10000, 'OFFLINE', 'BANGLORE', 'C34');
+ INSERT INTO COURSE VALUES(1004, 'SPOKEN_ENGLISH', 10000, 'OFFLINE', 'BANGLORE', 'C34')
+                                 *
+ERROR at line 1:
+ORA-12899: value too large for column "SCOTT"."COURSE"."CNAME" (actual: 14, 
+maximum: 10) 
+
+
+SQL> INSERT INTO COURSE VALUES(1004, 'ENGLISH', 10000, 'OFFLINE', 'BANGLORE', 'C34');
+
+1 row created.
+
+SQL> SAVEPOINT A;
+
+Savepoint created.
+
+SQL> ROLLBACK;
+
+Rollback complete.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SPOOL OFF

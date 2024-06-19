@@ -1,0 +1,415 @@
+SQL> SELECT E1.ENAME, E2.ENAME FROM EMP E1, EMP E2 WHERE E1.MGR=E2.EMPNO AND E1.JOB='CLERK';
+
+ENAME      ENAME
+---------- ----------
+SMITH      FORD
+ADAMS      SCOTT
+JAMES      BLAKE
+MILLER     CLARK
+
+SQL> SELECT E1.ENAME, E2.ENAME MGR_NAME, E2.JOB FROM EMP E1, EMP E2 WHERE E1.MGR=E2.EMPNO AND E2.DEP
+TNO=20; 
+
+ENAME      MGR_NAME   JOB
+---------- ---------- ---------
+SMITH      FORD       ANALYST
+SCOTT      JONES      MANAGER
+ADAMS      SCOTT      ANALYST
+FORD       JONES      MANAGER
+
+SQL> SELECT E1.ENAME, E2.ENAME FROM EMP E1, EMP E2 WHERE E1.MGR=E2.EMPNO AND E1.SAL>2500 AND E2.SAL>
+2500; 
+
+ENAME      ENAME
+---------- ----------
+JONES      KING
+BLAKE      KING
+SCOTT      JONES
+FORD       JONES
+
+SQL>  SELECT E1.ENAME, E2.SAL FROM EMP E1, EMP E2 WHERE E1.MGR=E2.EMPNO AND E1.SAL>2500 AND E2.SAL>2
+500; 
+
+ENAME             SAL
+---------- ----------
+JONES            5000
+BLAKE            5000
+SCOTT            2975
+FORD             2975
+
+SQL> SELECT E1.ENAME, E1.HIREDATE, E2.ENAME FROM EMP E1, EMP E2 WHERE E1.MGR=E2.EMPNO AND E1.HIREDAT
+E<'01-JAN-1982'; 
+
+ENAME      HIREDATE  ENAME
+---------- --------- ----------
+SMITH      17-DEC-80 FORD
+ALLEN      20-FEB-81 BLAKE
+WARD       22-FEB-81 BLAKE
+JONES      02-APR-81 KING
+MARTIN     28-SEP-81 BLAKE
+BLAKE      01-MAY-81 KING
+CLARK      09-JUN-81 KING
+TURNER     08-SEP-81 BLAKE
+JAMES      03-DEC-81 BLAKE
+FORD       03-DEC-81 JONES
+
+10 rows selected.
+
+SQL> SELECT E1.ENAME, E1.COMM, E2.ENAME MGR_NAME, E2.COMM MGR_COMM FROM EMP E1, EMP E2 WHERE E1.MGR=
+E2.EMPNO AND E1.JOB='SALESMAN' AND E2.DEPTNO=30
+  2  ;
+
+ENAME            COMM MGR_NAME     MGR_COMM
+---------- ---------- ---------- ----------
+ALLEN             300 BLAKE
+WARD              500 BLAKE
+MARTIN           1400 BLAKE
+TURNER              0 BLAKE
+
+SQL> SELECT E1.*, E2.ENAME MGR_NAME FROM EMP E1, EMP E2 WHERE E1.MGR=E2.EMPNO AND E1.SAL<E2.SAL;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO MGR_NAME
+---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800
+        20 FORD
+
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300
+        30 BLAKE
+
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500
+        30 BLAKE
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO MGR_NAME
+---------- ----------
+      7566 JONES      MANAGER         7839 02-APR-81       2975
+        20 KING
+
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400
+        30 BLAKE
+
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850
+        30 KING
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO MGR_NAME
+---------- ----------
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450
+        10 KING
+
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0
+        30 BLAKE
+
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100
+        20 SCOTT
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO MGR_NAME
+---------- ----------
+      7900 JAMES      CLERK           7698 03-DEC-81        950
+        30 BLAKE
+
+      7934 MILLER     CLERK           7782 23-JAN-82       1300
+        10 CLARK
+
+
+11 rows selected.
+
+SQL> SELECT E1.ENAME, E1.HIREDATE, E2.ENAME, E2.HIREDATE FROM EMP E1, EMP E2 WHERE E1.MGR= E2.MGR AN
+D E1.HIREDATE> E2.HIREDATE;
+
+ENAME      HIREDATE  ENAME      HIREDATE
+---------- --------- ---------- ---------
+JAMES      03-DEC-81 ALLEN      20-FEB-81
+TURNER     08-SEP-81 ALLEN      20-FEB-81
+MARTIN     28-SEP-81 ALLEN      20-FEB-81
+WARD       22-FEB-81 ALLEN      20-FEB-81
+JAMES      03-DEC-81 WARD       22-FEB-81
+TURNER     08-SEP-81 WARD       22-FEB-81
+MARTIN     28-SEP-81 WARD       22-FEB-81
+CLARK      09-JUN-81 JONES      02-APR-81
+BLAKE      01-MAY-81 JONES      02-APR-81
+JAMES      03-DEC-81 MARTIN     28-SEP-81
+CLARK      09-JUN-81 BLAKE      01-MAY-81
+
+ENAME      HIREDATE  ENAME      HIREDATE
+---------- --------- ---------- ---------
+JAMES      03-DEC-81 TURNER     08-SEP-81
+MARTIN     28-SEP-81 TURNER     08-SEP-81
+SCOTT      19-APR-87 FORD       03-DEC-81
+
+14 rows selected.
+
+SQL> SELECT E1.ENAME, E1.HIREDATE, E2.ENAME, E2.HIREDATE FROM EMP E1, EMP E2 WHERE E1.MGR= E2.MGR AN
+D E2.HIREDATE< E1.HIREDATE;
+
+ENAME      HIREDATE  ENAME      HIREDATE
+---------- --------- ---------- ---------
+JAMES      03-DEC-81 ALLEN      20-FEB-81
+TURNER     08-SEP-81 ALLEN      20-FEB-81
+MARTIN     28-SEP-81 ALLEN      20-FEB-81
+WARD       22-FEB-81 ALLEN      20-FEB-81
+JAMES      03-DEC-81 WARD       22-FEB-81
+TURNER     08-SEP-81 WARD       22-FEB-81
+MARTIN     28-SEP-81 WARD       22-FEB-81
+CLARK      09-JUN-81 JONES      02-APR-81
+BLAKE      01-MAY-81 JONES      02-APR-81
+JAMES      03-DEC-81 MARTIN     28-SEP-81
+CLARK      09-JUN-81 BLAKE      01-MAY-81
+
+ENAME      HIREDATE  ENAME      HIREDATE
+---------- --------- ---------- ---------
+JAMES      03-DEC-81 TURNER     08-SEP-81
+MARTIN     28-SEP-81 TURNER     08-SEP-81
+SCOTT      19-APR-87 FORD       03-DEC-81
+
+14 rows selected.
+
+SQL> SELECT E1.ENAME, E2.ENAME MGR_NAME FROM EMP E1, EMP E2 WHERE E1.MGR=E2.EMPNO AND E1.JOB= E2.JOB
+;
+
+no rows selected
+
+SQL> SELECT E1.ENAME, E2.ENAME MGR_NAME FROM EMP E1, EMP E2 WHERE E1.MGR=E2.EMPNO AND E2.JOB='MANAGE
+R';
+
+ENAME      MGR_NAME
+---------- ----------
+ALLEN      BLAKE
+WARD       BLAKE
+MARTIN     BLAKE
+SCOTT      JONES
+TURNER     BLAKE
+JAMES      BLAKE
+FORD       JONES
+MILLER     CLARK
+
+8 rows selected.
+
+SQL> SELECT E1.ENAME, E2.ENAME MGR_NAME, E3.ENAME MGR'S_MGR_NAME FROM EMP E1,EMP E2, EMP E3 WHERE E1
+.MGR=E2.EMPNO AND E2.MGR=E3.EMPNO;
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL>  SELECT E1.ENAME, E2.ENAME MGR_NAME, E3.ENAME MGRS_MGR_NAME FROM EMP E1,EMP E2, EMP E3 WHERE E1
+.MGR=E2.EMPNO AND E2.MGR=E3.EMPNO;
+
+ENAME      MGR_NAME   MGRS_MGR_N
+---------- ---------- ----------
+SMITH      FORD       JONES
+ALLEN      BLAKE      KING
+WARD       BLAKE      KING
+MARTIN     BLAKE      KING
+SCOTT      JONES      KING
+TURNER     BLAKE      KING
+ADAMS      SCOTT      JONES
+JAMES      BLAKE      KING
+FORD       JONES      KING
+MILLER     CLARK      KING
+
+10 rows selected.
+
+
+//19-06-2024
+
+SQL> SELECT E1.ENAME, E1.SAL, E2.ENAME, E2.SAL FROM EMP E1, EMP E2, EMP E3 WHERE EI.MGR=E2.EMPNO AND
+ E2.MGR=E3.EMPNO AND E1.SAL<E2.MGR AND E2.SAL<E3.MGR;
+SELECT E1.ENAME, E1.SAL, E2.ENAME, E2.SAL FROM EMP E1, EMP E2, EMP E3 WHERE EI.MGR=E2.EMPNO AND E2.M
+                                                                            *
+ERROR at line 1:
+ORA-00904: "EI"."MGR": invalid identifier
+
+
+SQL> SELECT E1.ENAME, E1.SAL, E2.ENAME, E2.SAL FROM EMP E1, EMP E2, EMP E3 WHERE E1.MGR=E2.EMPNO AND
+ E2.MGR=E3.EMPNO AND E1.SAL<E2.SAL AND E2.SAL<E3.SAL;
+
+ENAME             SAL ENAME             SAL
+---------- ---------- ---------- ----------
+ALLEN            1600 BLAKE            2850
+WARD             1250 BLAKE            2850
+MARTIN           1250 BLAKE            2850
+TURNER           1500 BLAKE            2850
+JAMES             950 BLAKE            2850
+MILLER           1300 CLARK            2450
+
+6 rows selected.
+
+SQL> SELECT E1.SAL, E2.SAL MGR_SAL, E3.SAL MGRS_MGR_SAL FROM EMP E1, EMP E2, EMP E3 WHERE E1.MGR=E2.
+EMPNO AND E2.MGR=E3.EMPNO AND E2.SAL<2000 AND E3.SAL>3000; 
+
+no rows selected
+
+SQL> SELECT E1.ENAME, E2.ENAME MGR_NAME, E3.ENAME MGRS_MGR_NAME FROM EMP E1, EMP E2, EMP E3 WHERE E1
+.MGR=E2.EMPNO AND E2.MGR=E3.EMPNO AND E1.SAL< E3.SAL; 
+
+ENAME      MGR_NAME   MGRS_MGR_N
+---------- ---------- ----------
+SMITH      FORD       JONES
+ALLEN      BLAKE      KING
+WARD       BLAKE      KING
+MARTIN     BLAKE      KING
+SCOTT      JONES      KING
+TURNER     BLAKE      KING
+ADAMS      SCOTT      JONES
+JAMES      BLAKE      KING
+FORD       JONES      KING
+MILLER     CLARK      KING
+
+10 rows selected.
+
+SQL> SELECT E1.ENAME, E2.ENAME MGR_NAME, D1.DNAME EMP_DEPTNAME, D2.DNAME MGR_DEPTNAME FROM EMP E1, E
+MP E2, DEPT D1, DEPT D2 WHERE E1.MGR=E2.EMPNO AND E1.DEPTNO=D1.DEPTNO AND E2.DEPTNO=D2.DEPTNO;
+
+ENAME      MGR_NAME   EMP_DEPTNAME   MGR_DEPTNAME
+---------- ---------- -------------- --------------
+SMITH      FORD       RESEARCH       RESEARCH
+ALLEN      BLAKE      SALES          SALES
+WARD       BLAKE      SALES          SALES
+JONES      KING       RESEARCH       ACCOUNTING
+MARTIN     BLAKE      SALES          SALES
+BLAKE      KING       SALES          ACCOUNTING
+CLARK      KING       ACCOUNTING     ACCOUNTING
+SCOTT      JONES      RESEARCH       RESEARCH
+TURNER     BLAKE      SALES          SALES
+ADAMS      SCOTT      RESEARCH       RESEARCH
+JAMES      BLAKE      SALES          SALES
+
+ENAME      MGR_NAME   EMP_DEPTNAME   MGR_DEPTNAME
+---------- ---------- -------------- --------------
+FORD       JONES      RESEARCH       RESEARCH
+MILLER     CLARK      ACCOUNTING     ACCOUNTING
+
+13 rows selected.
+
+SQL> SELECT E1.ENAME, D1.LOC EMP_LOC, E2.ENAME MGR_NAME, D2.LOC MGR_LOC FROM EMP E1, EMP E2, DEPT D1
+, DEPT D2 WHERE E1.MGR=E2.EMPNO AND E1.DEPTNO=D1.DEPTNO AND E2.DEPTNO=D2.DEPTNO;
+
+ENAME      EMP_LOC       MGR_NAME   MGR_LOC
+---------- ------------- ---------- -------------
+SMITH      DALLAS        FORD       DALLAS
+ALLEN      CHICAGO       BLAKE      CHICAGO
+WARD       CHICAGO       BLAKE      CHICAGO
+JONES      DALLAS        KING       NEW YORK
+MARTIN     CHICAGO       BLAKE      CHICAGO
+BLAKE      CHICAGO       KING       NEW YORK
+CLARK      NEW YORK      KING       NEW YORK
+SCOTT      DALLAS        JONES      DALLAS
+TURNER     CHICAGO       BLAKE      CHICAGO
+ADAMS      DALLAS        SCOTT      DALLAS
+JAMES      CHICAGO       BLAKE      CHICAGO
+
+ENAME      EMP_LOC       MGR_NAME   MGR_LOC
+---------- ------------- ---------- -------------
+FORD       DALLAS        JONES      DALLAS
+MILLER     NEW YORK      CLARK      NEW YORK
+
+13 rows selected.
+
+SQL> 
+
+SQL> SELECT E1.ENAME, D1.LOC EMP_LOC, E2.ENAME MGR_NAME, D2.LOC MGR_LOC FROM EMP E1, EMP E2, DEPT D1
+, DEPT D2 WHERE E1.MGR=E2.EMPNO AND E1.DEPTNO=D1.DEPTNO AND E2.DEPTNO=D2.DEPTNO AND E1.SAL<E2.SAL AN
+D D1.LOC='CHICAGO';
+
+ENAME      EMP_LOC       MGR_NAME   MGR_LOC
+---------- ------------- ---------- -------------
+ALLEN      CHICAGO       BLAKE      CHICAGO
+WARD       CHICAGO       BLAKE      CHICAGO
+MARTIN     CHICAGO       BLAKE      CHICAGO
+BLAKE      CHICAGO       KING       NEW YORK
+TURNER     CHICAGO       BLAKE      CHICAGO
+JAMES      CHICAGO       BLAKE      CHICAGO
+
+6 rows selected.
+
+SQL> SELECT ENAME FROM EMP WHERE ENAME LIKE '%%%';
+
+ENAME
+----------
+SMITH
+ALLEN
+WARD
+JONES
+MARTIN
+BLAKE
+CLARK
+SCOTT
+KING
+TURNER
+ADAMS
+
+ENAME
+----------
+JAMES
+FORD
+MILLER
+
+14 rows selected.
+
+SQL> SELECT ENAME FROM EMP WHERE ENAME LIKE '%%'
+  2  ;
+
+ENAME
+----------
+SMITH
+ALLEN
+WARD
+JONES
+MARTIN
+BLAKE
+CLARK
+SCOTT
+KING
+TURNER
+ADAMS
+
+ENAME
+----------
+JAMES
+FORD
+MILLER
+
+14 rows selected.
+
+SQL> SELECT ENAME FROM EMP WHERE ENAME LIKE '%';
+
+ENAME
+----------
+SMITH
+ALLEN
+WARD
+JONES
+MARTIN
+BLAKE
+CLARK
+SCOTT
+KING
+TURNER
+ADAMS
+
+ENAME
+----------
+JAMES
+FORD
+MILLER
+
+14 rows selected.
+
+SQL> SELECT ENAME FROM EMP WHERE ENAME LIKE '/%';
+
+no rows selected
+
+SQL> SELECT ENAME FROM EMP WHERE ENAME LIKE '@%%' ESCAPE '@';
+
+no rows selected
+
+SQL> 

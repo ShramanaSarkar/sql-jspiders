@@ -1,0 +1,267 @@
+SQL> SELECT * FROM TAB;
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+DEPT                           TABLE
+EMP                            TABLE
+BONUS                          TABLE
+SALGRADE                       TABLE
+BIN$DoGxY/cyQwedMV11OhDYKw==$0 TABLE
+COURSE                         TABLE
+STUDENT                        TABLE
+
+7 rows selected.
+
+SQL> SHOW RECYCLEBIN;
+ORIGINAL NAME    RECYCLEBIN NAME                OBJECT TYPE  DROP TIME
+---------------- ------------------------------ ------------ -------------------
+PERSONS          BIN$DoGxY/cyQwedMV11OhDYKw==$0 TABLE        2024-05-09:14:13:14
+SQL> PURGE TABLE PERSONS;
+
+Table purged.
+
+SQL> SELECT * FROM TAB;
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+DEPT                           TABLE
+EMP                            TABLE
+BONUS                          TABLE
+SALGRADE                       TABLE
+COURSE                         TABLE
+STUDENT                        TABLE
+
+6 rows selected.
+
+SQL> DESC COURSE;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CID                                       NOT NULL NUMBER(6)
+ CNAME                                     NOT NULL VARCHAR2(10)
+ FEES                                               NUMBER(6)
+ CTYPE                                              VARCHAR2(10)
+
+SQL> ALTER TABLE COURSE ADD BRANCH VARCHAR(15);
+
+Table altered.
+
+SQL> DESC COURSE;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CID                                       NOT NULL NUMBER(6)
+ CNAME                                     NOT NULL VARCHAR2(10)
+ FEES                                               NUMBER(6)
+ CTYPE                                              VARCHAR2(10)
+ BRANCH                                             VARCHAR2(15)
+
+SQL> SE4LECT  
+SP2-0042: unknown command "SE4LECT" - rest of line ignored.
+SQL> SELECT * FROM COURSE;
+
+no rows selected
+
+SQL> SELECT * FROM STUDENT;
+
+no rows selected
+
+SQL> ALTER TABLE COURSE ADD BATCHCODE VARCHAR(25);
+
+Table altered.
+
+SQL> ALTER TABLE COURSE RENAME COLUMN BRANCH TO BRANCH_NAME;
+
+Table altered.
+
+SQL> DESC COURSE;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CID                                       NOT NULL NUMBER(6)
+ CNAME                                     NOT NULL VARCHAR2(10)
+ FEES                                               NUMBER(6)
+ CTYPE                                              VARCHAR2(10)
+ BRANCH_NAME                                        VARCHAR2(15)
+ BATCHCODE                                          VARCHAR2(25)
+
+SQL> ALTER TABLE COURSE MODIFY BATCHCODE NUMBER(30);
+
+Table altered.
+
+SQL> DESC COURSE;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CID                                       NOT NULL NUMBER(6)
+ CNAME                                     NOT NULL VARCHAR2(10)
+ FEES                                               NUMBER(6)
+ CTYPE                                              VARCHAR2(10)
+ BRANCH_NAME                                        VARCHAR2(15)
+ BATCHCODE                                          NUMBER(30)
+
+SQL> ALTER TABLE COURSE DROP COLUMN BATCHCODE;
+
+Table altered.
+
+SQL> DESC COURSE;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CID                                       NOT NULL NUMBER(6)
+ CNAME                                     NOT NULL VARCHAR2(10)
+ FEES                                               NUMBER(6)
+ CTYPE                                              VARCHAR2(10)
+ BRANCH_NAME                                        VARCHAR2(15)
+
+SQL> ALTER TABLE COURSE ADD BATCHCODE VARCHAR(20);
+
+Table altered.
+
+SQL> DESC COURSE;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CID                                       NOT NULL NUMBER(6)
+ CNAME                                     NOT NULL VARCHAR2(10)
+ FEES                                               NUMBER(6)
+ CTYPE                                              VARCHAR2(10)
+ BRANCH_NAME                                        VARCHAR2(15)
+ BATCHCODE                                          VARCHAR2(20)
+
+SQL> CREATE TABLE AUTHOR(AID NUMBER(6) PRIMARY KEY, AUTHOR_NAME VARCHAR(10) NOT 
+
+  2  
+SQL> CREATE TABLE AUTHOR(AID NUMBER(6) PRIMARY KEY, AUTHOR_NAME VARCHAR(10) NOT 
+(10) DEFAULT ('FEMALE'), AGE NUMBER(2), CHECK(AGE>18);
+CREATE TABLE AUTHOR(AID NUMBER(6) PRIMARY KEY, AUTHOR_NAME VARCHAR(10) NOT NULL,
+                                                                                
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> CREATE TABLE AUTHOR(AID NUMBER(6) PRIMARY KEY, AUTHOR_NAME VARCHAR(10) NOT 
+(10) DEFAULT ('FEMALE'), AGE NUMBER(2), CHECK(AGE>18));
+
+Table created.
+
+SQL> CREATE TABLE BOOK(BID NUMBER(6) PRIMARY KEY, BNAME VARCHAR(10) UNIQUE, B_PR
+B_PRICE<5000), GENRE VARCHAR(10) NOT NULL, AID NUMBER(6) REFERENCES AUTHOR(AID))
+
+Table created.
+
+SQL> SELECT * FROM TAB;
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+DEPT                           TABLE
+EMP                            TABLE
+BONUS                          TABLE
+SALGRADE                       TABLE
+AUTHOR                         TABLE
+COURSE                         TABLE
+STUDENT                        TABLE
+BOOK                           TABLE
+
+8 rows selected.
+
+SQL> DESC AUTHOR;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ AID                                       NOT NULL NUMBER(6)
+ AUTHOR_NAME                               NOT NULL VARCHAR2(10)
+ GENDER                                             VARCHAR2(10)
+ AGE                                                NUMBER(2)
+
+SQL> DESC BOOK;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ BID                                       NOT NULL NUMBER(6)
+ BNAME                                              VARCHAR2(10)
+ B_PRICE                                            NUMBER(5)
+ GENRE                                     NOT NULL VARCHAR2(10)
+ AID                                                NUMBER(6)
+
+SQL> DROP TABLE AUTHOR;
+DROP TABLE AUTHOR
+           *
+ERROR at line 1:
+ORA-02449: unique/primary keys in table referenced by foreign keys
+
+
+SQL> DROP TABLE BOOK;
+
+Table dropped.
+
+SQL> DROP TABLE AUTHOR;
+
+Table dropped.
+
+SQL> SHOW RECYCLEBIN;
+ORIGINAL NAME    RECYCLEBIN NAME                OBJECT TYPE  DROP TIME
+---------------- ------------------------------ ------------ -------------------
+AUTHOR           BIN$P5KbGemcRWatlCZq8sfS2g==$0 TABLE        2024-06-09:12:18:37
+BOOK             BIN$2pa1F0eGTlq2MnX5YWu7OQ==$0 TABLE        2024-06-09:12:18:24
+SQL> FASHBACK TABLE BOOK TO BEFORE DROP;
+SP2-0734: unknown command beginning "FASHBACK T..." - rest of line ignored.
+SQL> FLASHBACK TABLE BOOK TO BEFORE DROP;
+
+Flashback complete.
+
+SQL> FLASHBACK TABLE AUTHOR TO BEFORE DROP;
+
+Flashback complete.
+
+SQL> PURGE TABLE BOOK;
+PURGE TABLE BOOK
+*
+ERROR at line 1:
+ORA-38307: object not in RECYCLE BIN
+
+
+SQL> INSERT INTO AUTHOR VALUES(1234, 'KESHAV', 'MALE', 45);
+
+1 row created.
+
+SQL> SELECT * FROM AUTHOR;
+
+       AID AUTHOR_NAM GENDER            AGE
+---------- ---------- ---------- ----------
+      1234 KESHAV     MALE               45
+
+SQL> TRUNCATE TABLE AUTHOR;
+
+Table truncated.
+
+SQL> SELECT * FROM AUTHOR
+  2  ;
+
+no rows selected
+
+SQL> SELECT * FROM TAB;
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+DEPT                           TABLE
+EMP                            TABLE
+BONUS                          TABLE
+SALGRADE                       TABLE
+BOOK                           TABLE
+COURSE                         TABLE
+STUDENT                        TABLE
+AUTHOR                         TABLE
+
+8 rows selected.
+
+SQL> RENAME BOOK TO BOOK_DETAILS;
+
+Table renamed.
+
+SQL> SELECT * FROM TAB;
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+DEPT                           TABLE
+EMP                            TABLE
+BONUS                          TABLE
+SALGRADE                       TABLE
+COURSE                         TABLE
+STUDENT                        TABLE
+AUTHOR                         TABLE
+BOOK_DETAILS                   TABLE
+
+8 rows selected.

@@ -1,0 +1,792 @@
+SQL> SELECT * FROM EMP;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7369 SMITH      CLERK           7902 17-DEC-80        800                 
+        20                                                                      
+                                                                                
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300      
+        30                                                                      
+                                                                                
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500      
+        30                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7566 JONES      MANAGER         7839 02-APR-81       2975                 
+        20                                                                      
+                                                                                
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400      
+        30                                                                      
+                                                                                
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                 
+        30                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                 
+        10                                                                      
+                                                                                
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                 
+        20                                                                      
+                                                                                
+      7839 KING       PRESIDENT            17-NOV-81       5000                 
+        10                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0      
+        30                                                                      
+                                                                                
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                 
+        20                                                                      
+                                                                                
+      7900 JAMES      CLERK           7698 03-DEC-81        950                 
+        30                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                 
+        20                                                                      
+                                                                                
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                 
+        10                                                                      
+                                                                                
+
+14 rows selected.
+
+SQL> INSERT INTO EMP
+  2  VALUES(1001, 'RAM', 'CLERK', 7876, '01-JAN-92', 2000, 150);
+INSERT INTO EMP
+            *
+ERROR at line 1:
+ORA-00947: not enough values 
+
+
+SQL> SET PAGES 120
+SQL> ;
+  1  INSERT INTO EMP
+  2* VALUES(1001, 'RAM', 'CLERK', 7876, '01-JAN-92', 2000, 150)
+SQL> SET PAGESIZE 30;
+SQL> SET PAGESIZE 80;
+SQL> SHOW PAGESIZE;
+pagesize 80
+SQL> SELECT DEPTNO FROM EMP;
+
+    DEPTNO                                                                      
+----------                                                                      
+        20                                                                      
+        30                                                                      
+        30                                                                      
+        20                                                                      
+        30                                                                      
+        30                                                                      
+        10                                                                      
+        20                                                                      
+        10                                                                      
+        30                                                                      
+        20                                                                      
+        30                                                                      
+        20                                                                      
+        10                                                                      
+
+14 rows selected.
+
+SQL> INSERT INTO EMP
+  2  VALUES(1001, 'RAM', 'CLERK', 7876, '01-JAN-92', 2000, 150, 40);
+
+1 row created.
+
+SQL> SELECT * FROM DEPT;
+
+    DEPTNO DNAME          LOC                                                   
+---------- -------------- -------------                                         
+        10 ACCOUNTING     NEW YORK                                              
+        20 RESEARCH       DALLAS                                                
+        30 SALES          CHICAGO                                               
+        40 OPERATIONS     BOSTON                                                
+
+SQL> SELECT * FROM EMP;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      1001 RAM        CLERK           7876 01-JAN-92       2000        150      
+        40                                                                      
+                                                                                
+      7369 SMITH      CLERK           7902 17-DEC-80        800                 
+        20                                                                      
+                                                                                
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300      
+        30                                                                      
+                                                                                
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500      
+        30                                                                      
+                                                                                
+      7566 JONES      MANAGER         7839 02-APR-81       2975                 
+        20                                                                      
+                                                                                
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400      
+        30                                                                      
+                                                                                
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                 
+        30                                                                      
+                                                                                
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                 
+        10                                                                      
+                                                                                
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                 
+        20                                                                      
+                                                                                
+      7839 KING       PRESIDENT            17-NOV-81       5000                 
+        10                                                                      
+                                                                                
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0      
+        30                                                                      
+                                                                                
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                 
+        20                                                                      
+                                                                                
+      7900 JAMES      CLERK           7698 03-DEC-81        950                 
+        30                                                                      
+                                                                                
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                 
+        20                                                                      
+                                                                                
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                 
+        10                                                                      
+                                                                                
+
+15 rows selected.
+
+SQL> INSERT INTO EMP VALUS(1002, 'LAXMAN', 'SALESMAN', '10-AUG-2000', 7000, 150, 20);
+INSERT INTO EMP VALUS(1002, 'LAXMAN', 'SALESMAN', '10-AUG-2000', 7000, 150, 20)
+                      *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword 
+
+
+SQL>  INSERT INTO EMP VALUES (1002, 'LAXMAN', 'SALESMAN', '10-AUG-2000', 7000, 150, 20);
+ INSERT INTO EMP VALUES (1002, 'LAXMAN', 'SALESMAN', '10-AUG-2000', 7000, 150, 20)
+             *
+ERROR at line 1:
+ORA-00947: not enough values 
+
+
+SQL>  INSERT INTO EMP
+  2  VALUES(1002, 'LAXMAN', 'SALESMAN', '10-AUG-2000', 7000, 150, 20);
+ INSERT INTO EMP
+             *
+ERROR at line 1:
+ORA-00947: not enough values 
+
+
+SQL>   INSERT INTO EMP
+  2   VALUES(1002, 'LAXMAN', 'SALESMAN', 7000, '10-AUG-2000', 150, 20);
+  INSERT INTO EMP
+              *
+ERROR at line 1:
+ORA-00947: not enough values 
+
+
+SQL> INSERT INTO EMP VALUES((1002, 'LAXMAN', 'SALESMAN', 7934, '10-AUG-2000', 7000, 150, 20);
+INSERT INTO EMP VALUES((1002, 'LAXMAN', 'SALESMAN', 7934, '10-AUG-2000', 7000, 150, 20)
+                            *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL> INSERT INTO EMP VALUES(1002, 'LAXMAN', 'SALESMAN', 7934, '10-AUG-2000', 7000, 150, 20);
+
+1 row created.
+
+SQL> SELECT * FROM DEPT;
+
+    DEPTNO DNAME          LOC                                                   
+---------- -------------- -------------                                         
+        10 ACCOUNTING     NEW YORK                                              
+        20 RESEARCH       DALLAS                                                
+        30 SALES          CHICAGO                                               
+        40 OPERATIONS     BOSTON                                                
+
+SQL> INSERT INTO DEPT VALUES(50, 'HR', 'NEW DELHI');
+
+1 row created.
+
+SQL> SELECT * FROM DEPT;
+
+    DEPTNO DNAME          LOC                                                   
+---------- -------------- -------------                                         
+        50 HR             NEW DELHI                                             
+        10 ACCOUNTING     NEW YORK                                              
+        20 RESEARCH       DALLAS                                                
+        30 SALES          CHICAGO                                               
+        40 OPERATIONS     BOSTON                                                
+
+SQL> DESC EMP;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                     NOT NULL NUMBER(4)
+ ENAME                                              VARCHAR2(10)
+ JOB                                                VARCHAR2(9)
+ MGR                                                NUMBER(4)
+ HIREDATE                                           DATE
+ SAL                                                NUMBER(7,2)
+ COMM                                               NUMBER(7,2)
+ DEPTNO                                             NUMBER(2)
+
+SQL> INSERT INTO EMP VALUES(1003, 'RAGHAV', 'HR', 1001, '05-SEP-2022', 9500, 0, 50);
+
+1 row created.
+
+SQL> SELECT * FROM EMP;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      1001 RAM        CLERK           7876 01-JAN-92       2000        150      
+        40                                                                      
+                                                                                
+      1002 LAXMAN     SALESMAN        7934 10-AUG-00       7000        150      
+        20                                                                      
+                                                                                
+      1003 RAGHAV     HR              1001 05-SEP-22       9500          0      
+        50                                                                      
+                                                                                
+      7369 SMITH      CLERK           7902 17-DEC-80        800                 
+        20                                                                      
+                                                                                
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300      
+        30                                                                      
+                                                                                
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500      
+        30                                                                      
+                                                                                
+      7566 JONES      MANAGER         7839 02-APR-81       2975                 
+        20                                                                      
+                                                                                
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400      
+        30                                                                      
+                                                                                
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                 
+        30                                                                      
+                                                                                
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                 
+        10                                                                      
+                                                                                
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                 
+        20                                                                      
+                                                                                
+      7839 KING       PRESIDENT            17-NOV-81       5000                 
+        10                                                                      
+                                                                                
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0      
+        30                                                                      
+                                                                                
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                 
+        20                                                                      
+                                                                                
+      7900 JAMES      CLERK           7698 03-DEC-81        950                 
+        30                                                                      
+                                                                                
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                 
+        20                                                                      
+                                                                                
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                 
+        10                                                                      
+                                                                                
+
+17 rows selected.
+
+SQL> INSERT INTO EMP (EMPNO, ENAME, SAL)
+  2  VALUES(1004, SAM, 6000);
+VALUES(1004, SAM, 6000)
+             *
+ERROR at line 2:
+ORA-00984: column not allowed here 
+
+
+SQL> INSERT INTO EMP (EMPNO, ENAME, SAL) VALUES(1004, 'SAM', 6000);
+
+1 row created.
+
+SQL> SELECT * FROM EMP;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      1001 RAM        CLERK           7876 01-JAN-92       2000        150      
+        40                                                                      
+                                                                                
+      1002 LAXMAN     SALESMAN        7934 10-AUG-00       7000        150      
+        20                                                                      
+                                                                                
+      1003 RAGHAV     HR              1001 05-SEP-22       9500          0      
+        50                                                                      
+                                                                                
+      1004 SAM                                             6000                 
+                                                                                
+                                                                                
+      7369 SMITH      CLERK           7902 17-DEC-80        800                 
+        20                                                                      
+                                                                                
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300      
+        30                                                                      
+                                                                                
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500      
+        30                                                                      
+                                                                                
+      7566 JONES      MANAGER         7839 02-APR-81       2975                 
+        20                                                                      
+                                                                                
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400      
+        30                                                                      
+                                                                                
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                 
+        30                                                                      
+                                                                                
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                 
+        10                                                                      
+                                                                                
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                 
+        20                                                                      
+                                                                                
+      7839 KING       PRESIDENT            17-NOV-81       5000                 
+        10                                                                      
+                                                                                
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0      
+        30                                                                      
+                                                                                
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                 
+        20                                                                      
+                                                                                
+      7900 JAMES      CLERK           7698 03-DEC-81        950                 
+        30                                                                      
+                                                                                
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                 
+        20                                                                      
+                                                                                
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                 
+        10                                                                      
+                                                                                
+
+18 rows selected.
+
+SQL> UPDATE EMP SET SAL= 5000 WHERE ENAME='RAM';
+
+1 row updated.
+
+SQL> SELECT * FROM  EMP;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      1001 RAM        CLERK           7876 01-JAN-92       5000        150      
+        40                                                                      
+                                                                                
+      1002 LAXMAN     SALESMAN        7934 10-AUG-00       7000        150      
+        20                                                                      
+                                                                                
+      1003 RAGHAV     HR              1001 05-SEP-22       9500          0      
+        50                                                                      
+                                                                                
+      1004 SAM                                             6000                 
+                                                                                
+                                                                                
+      7369 SMITH      CLERK           7902 17-DEC-80        800                 
+        20                                                                      
+                                                                                
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300      
+        30                                                                      
+                                                                                
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500      
+        30                                                                      
+                                                                                
+      7566 JONES      MANAGER         7839 02-APR-81       2975                 
+        20                                                                      
+                                                                                
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400      
+        30                                                                      
+                                                                                
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                 
+        30                                                                      
+                                                                                
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                 
+        10                                                                      
+                                                                                
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                 
+        20                                                                      
+                                                                                
+      7839 KING       PRESIDENT            17-NOV-81       5000                 
+        10                                                                      
+                                                                                
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0      
+        30                                                                      
+                                                                                
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                 
+        20                                                                      
+                                                                                
+      7900 JAMES      CLERK           7698 03-DEC-81        950                 
+        30                                                                      
+                                                                                
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                 
+        20                                                                      
+                                                                                
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                 
+        10                                                                      
+                                                                                
+
+18 rows selected.
+
+SQL> UPDATE EMP SET MGR=7900, COMM= 50 WHERE ENAME LIKE '
+  2  
+SQL> UPDATE EMP SET MGR=7900, COMM= 50 WHERE ENAME LIKE '%X_A%';
+
+1 row updated.
+
+SQL> SELECT * FROM EMP;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      1001 RAM        CLERK           7876 01-JAN-92       5000        150      
+        40                                                                      
+                                                                                
+      1002 LAXMAN     SALESMAN        7900 10-AUG-00       7000         50      
+        20                                                                      
+                                                                                
+      1003 RAGHAV     HR              1001 05-SEP-22       9500          0      
+        50                                                                      
+                                                                                
+      1004 SAM                                             6000                 
+                                                                                
+                                                                                
+      7369 SMITH      CLERK           7902 17-DEC-80        800                 
+        20                                                                      
+                                                                                
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300      
+        30                                                                      
+                                                                                
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500      
+        30                                                                      
+                                                                                
+      7566 JONES      MANAGER         7839 02-APR-81       2975                 
+        20                                                                      
+                                                                                
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400      
+        30                                                                      
+                                                                                
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                 
+        30                                                                      
+                                                                                
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                 
+        10                                                                      
+                                                                                
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                 
+        20                                                                      
+                                                                                
+      7839 KING       PRESIDENT            17-NOV-81       5000                 
+        10                                                                      
+                                                                                
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0      
+        30                                                                      
+                                                                                
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                 
+        20                                                                      
+                                                                                
+      7900 JAMES      CLERK           7698 03-DEC-81        950                 
+        30                                                                      
+                                                                                
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                 
+        20                                                                      
+                                                                                
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                 
+        10                                                                      
+                                                                                
+
+18 rows selected.
+
+SQL> //SDEREWR
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      1001 RAM        CLERK           7876 01-JAN-92       5000        150      
+        40                                                                      
+                                                                                
+      1002 LAXMAN     SALESMAN        7900 10-AUG-00       7000         50      
+        20                                                                      
+                                                                                
+      1003 RAGHAV     HR              1001 05-SEP-22       9500          0      
+        50                                                                      
+                                                                                
+      1004 SAM                                             6000                 
+                                                                                
+                                                                                
+      7369 SMITH      CLERK           7902 17-DEC-80        800                 
+        20                                                                      
+                                                                                
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300      
+        30                                                                      
+                                                                                
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500      
+        30                                                                      
+                                                                                
+      7566 JONES      MANAGER         7839 02-APR-81       2975                 
+        20                                                                      
+                                                                                
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400      
+        30                                                                      
+                                                                                
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                 
+        30                                                                      
+                                                                                
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                 
+        10                                                                      
+                                                                                
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                 
+        20                                                                      
+                                                                                
+      7839 KING       PRESIDENT            17-NOV-81       5000                 
+        10                                                                      
+                                                                                
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0      
+        30                                                                      
+                                                                                
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                 
+        20                                                                      
+                                                                                
+      7900 JAMES      CLERK           7698 03-DEC-81        950                 
+        30                                                                      
+                                                                                
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                 
+        20                                                                      
+                                                                                
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                 
+        10                                                                      
+                                                                                
+
+18 rows selected.
+
+SQL> //T
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      1001 RAM        CLERK           7876 01-JAN-92       5000        150      
+        40                                                                      
+                                                                                
+      1002 LAXMAN     SALESMAN        7900 10-AUG-00       7000         50      
+        20                                                                      
+                                                                                
+      1003 RAGHAV     HR              1001 05-SEP-22       9500          0      
+        50                                                                      
+                                                                                
+      1004 SAM                                             6000                 
+                                                                                
+                                                                                
+      7369 SMITH      CLERK           7902 17-DEC-80        800                 
+        20                                                                      
+                                                                                
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300      
+        30                                                                      
+                                                                                
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500      
+        30                                                                      
+                                                                                
+      7566 JONES      MANAGER         7839 02-APR-81       2975                 
+        20                                                                      
+                                                                                
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400      
+        30                                                                      
+                                                                                
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                 
+        30                                                                      
+                                                                                
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                 
+        10                                                                      
+                                                                                
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                 
+        20                                                                      
+                                                                                
+      7839 KING       PRESIDENT            17-NOV-81       5000                 
+        10                                                                      
+                                                                                
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0      
+        30                                                                      
+                                                                                
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                 
+        20                                                                      
+                                                                                
+      7900 JAMES      CLERK           7698 03-DEC-81        950                 
+        30                                                                      
+                                                                                
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                 
+        20                                                                      
+                                                                                
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                 
+        10                                                                      
+                                                                                
+
+18 rows selected.
+
+SQL> UPDATE EMP SET SAL= SAL+(SAL*10/100) WHERE JOB='SALESMAN';
+
+5 rows updated.
+
+SQL> SELECT * FROM EMP;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      1001 RAM        CLERK           7876 01-JAN-92       5000        150      
+        40                                                                      
+                                                                                
+      1002 LAXMAN     SALESMAN        7900 10-AUG-00       7700         50      
+        20                                                                      
+                                                                                
+      1003 RAGHAV     HR              1001 05-SEP-22       9500          0      
+        50                                                                      
+                                                                                
+      1004 SAM                                             6000                 
+                                                                                
+                                                                                
+      7369 SMITH      CLERK           7902 17-DEC-80        800                 
+        20                                                                      
+                                                                                
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1760        300      
+        30                                                                      
+                                                                                
+      7521 WARD       SALESMAN        7698 22-FEB-81       1375        500      
+        30                                                                      
+                                                                                
+      7566 JONES      MANAGER         7839 02-APR-81       2975                 
+        20                                                                      
+                                                                                
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1375       1400      
+        30                                                                      
+                                                                                
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                 
+        30                                                                      
+                                                                                
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                 
+        10                                                                      
+                                                                                
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                 
+        20                                                                      
+                                                                                
+      7839 KING       PRESIDENT            17-NOV-81       5000                 
+        10                                                                      
+                                                                                
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1650          0      
+        30                                                                      
+                                                                                
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                 
+        20                                                                      
+                                                                                
+      7900 JAMES      CLERK           7698 03-DEC-81        950                 
+        30                                                                      
+                                                                                
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                 
+        20                                                                      
+                                                                                
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                 
+        10                                                                      
+                                                                                
+
+18 rows selected.
+
+SQL> UPDATE EMP SET MGR=7900, COMM= 50 WHERE ENAME='A';
+
+0 rows updated.
+
+SQL> UPDATE EMP SET SAL=12000, DEPTNO=40;
+
+18 rows updated.
+
+SQL> SELECT * FROM EMP;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      1001 RAM        CLERK           7876 01-JAN-92      12000        150      
+        40                                                                      
+                                                                                
+      1002 LAXMAN     SALESMAN        7900 10-AUG-00      12000         50      
+        40                                                                      
+                                                                                
+      1003 RAGHAV     HR              1001 05-SEP-22      12000          0      
+        40                                                                      
+                                                                                
+      1004 SAM                                            12000                 
+        40                                                                      
+                                                                                
+      7369 SMITH      CLERK           7902 17-DEC-80      12000                 
+        40                                                                      
+                                                                                
+      7499 ALLEN      SALESMAN        7698 20-FEB-81      12000        300      
+        40                                                                      
+                                                                                
+      7521 WARD       SALESMAN        7698 22-FEB-81      12000        500      
+        40                                                                      
+                                                                                
+      7566 JONES      MANAGER         7839 02-APR-81      12000                 
+        40                                                                      
+                                                                                
+      7654 MARTIN     SALESMAN        7698 28-SEP-81      12000       1400      
+        40                                                                      
+                                                                                
+      7698 BLAKE      MANAGER         7839 01-MAY-81      12000                 
+        40                                                                      
+                                                                                
+      7782 CLARK      MANAGER         7839 09-JUN-81      12000                 
+        40                                                                      
+                                                                                
+      7788 SCOTT      ANALYST         7566 19-APR-87      12000                 
+        40                                                                      
+                                                                                
+      7839 KING       PRESIDENT            17-NOV-81      12000                 
+        40                                                                      
+                                                                                
+      7844 TURNER     SALESMAN        7698 08-SEP-81      12000          0      
+        40                                                                      
+                                                                                
+      7876 ADAMS      CLERK           7788 23-MAY-87      12000                 
+        40                                                                      
+                                                                                
+      7900 JAMES      CLERK           7698 03-DEC-81      12000                 
+        40                                                                      
+                                                                                
+      7902 FORD       ANALYST         7566 03-DEC-81      12000                 
+        40                                                                      
+                                                                                
+      7934 MILLER     CLERK           7782 23-JAN-82      12000                 
+        40                                                                      
+                                                                                
+
+18 rows selected.
+
+SQL> SPOOL OFF
