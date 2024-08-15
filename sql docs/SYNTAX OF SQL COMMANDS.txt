@@ -1,0 +1,177 @@
+DDL-USED TO PERFORM OPERATION ON THE STRUCTURE OF THE TABLE
+
+
+1)CREATE-
+CREATE TABLE TABLE_NAME
+(COL_NAME1 DATATYPE NOT NULL/[NULL],
+COL_NAME2 DATATYPE NOT NULL/[NULL],
+.
+.
+COL_NAMEn DATATYPE NOT NULL/[NULL],
+CONSTRAINT CONSTRAINT_REF_NAME UNIQUE(COL_NAME),
+CONSTRAINT CONSTRAINT_REF_NAME CHECK(CONDITION),
+CONSTRAINT CONSTRAINT_REF_NAME PRIMARY KEY(COL_NAME),
+CONSTRAINT CONSTRAINT_REF_NAME FOREIGN KEY(COL_NAME) REFERENCES PARENT_TABLE_NAME(COL_NAME));
+
+2)RENAME-RENAME THE EXISTING TABLE
+RENAME CURRENT_TABLE_NAME TO NEW_TABLE_NAME;
+
+3)ALTER-USED TO MODIFY THE STRUCTURE OF THE TABLE.
+
+a)add column to the table
+ALTER TABLE TABLE_NAME
+ADD COL_NAME DATATYPE NOT NULL/[NULL];
+
+b)drop column from the table
+ALTER TABLE TABLE_NAME
+DROP COLUMN COL_NAME;
+
+c)change the datatype of the column
+ALTER TABLE TABLE_NAME
+MODIFY COL_NAME NEW_DATATYPE;
+
+d)change the null/not null constraint
+ALTER TABLE TABLE_NAME
+MODIFY COL_NAME EXISTING DATATYPE NOT NULL/NULL;
+
+e)rename the column
+ALTER TABLE TABLE_NAME
+RENAME COLUMN CURRENT_NAME TO NEW_NAME;
+
+4)TRUNCATE-USED TO DELETE RECORDS OF THE TABLE PERMANENTLY, BUT NOT THE STRUCTURE OF THE TABLE
+TRUNCATE TABLE TABLE_NAME;
+
+5)DROP-USED TO DELETE THE TABLE FROM DATABASE
+DROP TABLE TABLE_NAME;
+
+a)flashback is used to recover the table from the recyclebin
+FLASHBACK TABLE TABLE_NAME TO BEFORE DROP;
+
+b)purge is used to delete the table permanently from recyclebin
+PURGE TABLE TABLE_NAME;
+
+
+DML-USED TO DO OPERATIONS ON THE RECORDS OF THE TABLE
+
+
+1)INSERT-
+INSERT INTO TABLE_NAME VALUES(V1, V2,  V3,......, Vn);
+
+2)UPDATE-
+UPDATE TABLE TABLE_NAME 
+SET COL1=V1, COL2=V2,......,COLn=Vn
+[WHERE<FILTER CONDITION>];
+
+3)DELETE-
+DELETE FROM TABLE_NAME [WHERE<FILTER CONDITION>];
+
+
+TCL-USED TO CONTROL THE TRANSACTIONS(insert, update, delete)
+
+
+1)COMMIT-USED TO SAVE THE TRANSACTION
+COMMIT;
+
+2)ROLLBACK-USED TO UNDO THE TRANSACTION
+ROLLBACK;
+
+3)SAVEPOINT-USED TO CREATE THE CHECKPOINTS
+SAVEPOINT SAVEPOINT_NAME;
+
+
+DCL-USED TO GIVE OR TACK BACK PERMISSION FROM THE USER
+
+
+1)GRANT-USED TO GIVE PERMISSION
+GRANT SQL_STATEMENT ON TABLE_NAME TO USER_NAME;
+EX: GRANT INSERT ON TEACHER TO HR;
+
+2)REVOKE-USED TO TAKE BACK THE GIVEN PERMISSION
+REVOKE SQL_STATEMENT ON TABLE_NAME FROM USER_NAME;
+EX: REVOKE INSERT ON TEACHER FROM HR;
+
+
+group by clause- it is used to group multiple rows with same values. in select statement we need to select mrf() along with the column which we are going to group.
+having clause-it is used to filter the records from the groups made by the group by clause.
+order by-it is used to sort the records in ascending or descending order.
+where clause-it is used to filter the records from the table.
+
+order of execution-
+from
+where- row by row
+group by- row by row
+having- group by group
+select- group by group
+order by  
+
+Single Row functions - Single row functions are the one who work on single row and return one output per row. Also known as scaler function.
+ex: MOD(), LENGTH(), ROUND(), INITCAP(), UPPER(), LOWER(), REVERSE(), REPLACE()...... ETC.
+
+Multiple Row functions - Multiple row functions work upon group of rows and return one result for the complete set of rows. They are also known as Group Functions OR Aggregate Functions.
+ex: MAX(), MIN(), SUM(), AVG(), COUNT().
+
+What is subquery?
+A subquery is a query within another query. The outer query is called as main query, and inner query is called subquery.
+SubQuery is always executed first, and the result of subquery is passed on to the main query.
+
+What is a constraint?
+Constraint can be used to specify the limit on the data type of table. Constraint can be specified while creating or altering the table statement.
+Sample of constraint are
+NOT NULL
+CHECK
+UNIQUE
+PRIMARY KEY
+FOREIGN KEY
+
+
+Subqueries that can return only one or zero rows to the outer statement are called single-row subqueries. Single-row subqueries are subqueries used with a comparison operator in a WHERE, or HAVING clause.
+
+Subqueries that can return more than one row (but only one column) to the outer statement are called multiple-row subqueries. Multiple-row subqueries are subqueries used with an IN, ANY, or ALL clause.
+
+
+JOINS- USED TO RETRIEVE DATA FROM MULTIPLE TABLES SIMULTANEOUSLY
+TYPES-
+1.CROSS/CARTESIAN JOIN-ALL THE RECORDS BETWEEN TWO TABLES WILL MERGE
+SYNTAX: 
+SELECT COL_NAME FROM TABLE1, TABLE2;
+
+2.INNER/EQUI JOIN-USED TO OBTAIN ONLY MATCHED RECORDS
+SYNTAX: 
+SELECT COL_NAME 
+FROM TABLE1, TABLE2 
+WHERE <JOIN CONDITION>
+EX: SELECT ENAME, DNAME
+    FROM EMP, DEPT
+    WHERE EMP.DEPTNO=DEPT.DEPTNO;
+
+3.OUTER JOIN-USED TO OBTAIN THE UNMATCHED RECORDS
+	a)LEFT OUTER JOIN-USED TO OBTAIN MATCHED & UNMATCHED RECORDS OF THE LEFT TABLE
+	  SELECT COL_NAME 
+	  FROM TABLE1, TABLE2
+	  WHERE TABLE1.COL_NAME=TABLE2.COL_NAME(+);
+
+	b)RIGHT OUTER JOIN-USED TO OBTAIN MATCHED & UNMATCHED RECORDS OF THE RIGHT TABLE
+	  SELECT COL_NAME 
+	  FROM TABLE1, TABLE2
+	  WHERE TABLE1.COL_NAME(+)=TABLE2.COL_NAME;
+
+	c)FULL OUTER JOIN-USED TO OBTAIN MATCHED & UNMATCHED RECORDS FROM BOTH TABLES
+          ANSI SYNTAX- SELECT COL_NAME FROM TABLE1 FULL[OUTER]JOIN TABLE2 ON <JOIN CONDITION>;
+	NO ORACLE SYNTAX
+
+4) NATURAL JOIN-
+5)SELF JOIN-USED TO JOIN SAME TWO TABLES OR WE CAN SAY JOINING BY ITSELF
+SYNTAX
+SELECT COL_NAME
+FROM TABLE_NAME T1, TABLE_NAME T2
+WHERE <JOIN CONDITION>;
+
+EX: SELECT E1.ENAME, E2.ENAME
+    FROM EMP E1, EMP E2
+    WHERE E1.MGR=E2.EMPNO;
+
+dql-selection projection join
+
+ 
+
+

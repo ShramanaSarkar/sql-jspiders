@@ -1,0 +1,352 @@
+Connected to:
+Oracle Database 10g Enterprise Edition Release 10.2.0.1.0 - Production
+With the Partitioning, OLAP and Data Mining options
+
+SQL> select * from tab;
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+DEPT                           TABLE
+EMP                            TABLE
+BONUS                          TABLE
+SALGRADE                       TABLE
+BOOK                           TABLE
+COURSE                         TABLE
+STUDENT                        TABLE
+AUTHOR                         TABLE
+
+8 rows selected.
+
+SQL> select * from student;
+
+       SID SNAME             AGE GENDER       MOBILENO DOB
+---------- ---------- ---------- ---------- ---------- ---------
+EMAILID                     CID
+-------------------- ----------
+      2002 SONAL              22 FEMALE     5376783839 05-SEP-02
+SONA05@MAIL                1003
+.COM
+
+      2003 ISHA               21 FEMALE     7654352345 23-AUG-01
+ISHA23@MAIL.               1000
+COM
+
+
+SQL> CREATE TABLE TEACHER
+  2  (
+  3  TID VARCHAR(3) NOT NULL,
+  4  TNAME VARCHAR(20) NOT NULL,
+  5  SAL NUMBER(7,2),
+  6  CONSTRAINT TID_PK PRIMARY KEY(TID),
+  7  CONSTRAINT SAL_C CHECK(SAL>0));
+
+Table created.
+
+SQL> DESC TEACHER
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ TID                                       NOT NULL VARCHAR2(3)
+ TNAME                                     NOT NULL VARCHAR2(20)
+ SAL                                                NUMBER(7,2)
+
+SQL> SELECT * FROM TAB;
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+DEPT                           TABLE
+EMP                            TABLE
+BONUS                          TABLE
+SALGRADE                       TABLE
+BOOK                           TABLE
+COURSE                         TABLE
+STUDENT                        TABLE
+AUTHOR                         TABLE
+TEACHER                        TABLE
+
+9 rows selected.
+
+SQL> CREATE TABLE STUDENT_TAB
+  2  (
+  3  STID VARCHAR(6) NOT NULL,
+  4  STNAME VARCHAR(25) NOT NULL,
+  5  BRANCH VARCHAR(10) NOT NULL, 
+  6  PH_NO NUMBER(10),
+  7  AGE NUMBER(2) NOT NULL,
+  8  TID VARCHAR(3),
+  9  CONSTRAINT STID_PK PRIMARY KEY(STID),
+ 10  CONSTRAINT PH_U UNIQUE (PH_NO),
+ 11   CONSTRAINT PH_C CHECK(PH_NO),
+ 12  CONSTRAINT AGE_C CHECK(AGE>=18),
+ 13  CONSTRAINT TID_FK FOREIGN KEY(TID) REFERENCES TEACHER(TID));
+ CONSTRAINT PH_C CHECK(PH_NO),
+                            *
+ERROR at line 11:
+ORA-00920: invalid relational operator
+
+
+SQL> ALTER TABLE TEACHER ADD SUBJECT VARCHAR(15);
+
+Table altered.
+
+SQL> DESC TEACHER
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ TID                                       NOT NULL VARCHAR2(3)
+ TNAME                                     NOT NULL VARCHAR2(20)
+ SAL                                                NUMBER(7,2)
+ SUBJECT                                            VARCHAR2(15)
+
+SQL> ALTER TABLE TEACHER DROPSUBJECT
+  2  
+SQL> ALTER TABLE TEACHER DROP SUBJECT;
+ALTER TABLE TEACHER DROP SUBJECT
+                         *
+ERROR at line 1:
+ORA-00905: missing keyword
+
+
+SQL> ALTER TABLE TEACHER DROP COLUMN SUBJECT;
+
+Table altered.
+
+SQL> DESC TEACHER
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ TID                                       NOT NULL VARCHAR2(3)
+ TNAME                                     NOT NULL VARCHAR2(20)
+ SAL                                                NUMBER(7,2)
+
+SQL> CREATE TABLE STUDENT_TAB
+  2  (
+  3  STID VARCHAR(6) NOT NULL,
+  4  STNAME VARCHAR(25) NOT NULL,
+  5  BRANCH VARCHAR(10) NOT NULL, 
+  6  PH_NO NUMBER(10),
+  7  AGE NUMBER(2) NOT NULL,
+  8  TID VARCHAR(3),
+  9  CONSTRAINT STID_PK PRIMARY KEY(STID),
+ 10  CONSTRAINT PH_U UNIQUE (PH_NO),CONSTRAINT PH_C CHECK
+ 11  
+SQL> 
+SQL> 
+SQL> ALTER TABLE TEACHER
+  2  MODIFY SAL NUMBER(7,2) NOT NULL;
+
+Table altered.
+
+SQL> DESC TEACHER
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ TID                                       NOT NULL VARCHAR2(3)
+ TNAME                                     NOT NULL VARCHAR2(20)
+ SAL                                       NOT NULL NUMBER(7,2)
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE TEACHER
+  2  MODIFY SAL NUMBER(7,2)
+  3* NULL
+  4  /
+
+Table altered.
+
+SQL> DESC TEACHER
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ TID                                       NOT NULL VARCHAR2(3)
+ TNAME                                     NOT NULL VARCHAR2(20)
+ SAL                                                NUMBER(7,2)
+
+SQL> SELECT * FROM TAB;
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+DEPT                           TABLE
+EMP                            TABLE
+BONUS                          TABLE
+SALGRADE                       TABLE
+BOOK                           TABLE
+COURSE                         TABLE
+STUDENT                        TABLE
+AUTHOR                         TABLE
+TEACHER                        TABLE
+
+9 rows selected.
+
+SQL> CREATE TABLE STUDENT_TAB
+  2  (
+  3  STID VARCHAR(6) NOT NULL,
+  4  STNAME VARCHAR(25) NOT NULL,
+  5  BRANCH VARCHAR(10) NOT NULL, 
+  6  PH_NO NUMBER(10),
+  7  AGE NUMBER(2) NOT NULL,
+  8  TID VARCHAR(3),
+  9  CONSTRAINT STID_PK PRIMARY KEY(STID),
+ 10  CONSTRAINT PH_U UNIQUE (PH_NO),
+ 11  CONSTRAINT PH_C CHECK(LENGTH(PH_NO)=10),
+ 12  CONSTRAINT AGE_C CHECK(AGE>=18),
+ 13  CONSTRAINT TID_FK FOREIGN KEY(TID) REFERENCES TEACHER(TID));
+
+Table created.
+
+SQL> SELECT * FROM TAB;
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+DEPT                           TABLE
+EMP                            TABLE
+BONUS                          TABLE
+SALGRADE                       TABLE
+BOOK                           TABLE
+COURSE                         TABLE
+STUDENT                        TABLE
+AUTHOR                         TABLE
+TEACHER                        TABLE
+STUDENT_TAB                    TABLE
+
+10 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* SELECT * FROM TAB
+SQL> /
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+DEPT                           TABLE
+EMP                            TABLE
+BONUS                          TABLE
+SALGRADE                       TABLE
+BOOK                           TABLE
+COURSE                         TABLE
+STUDENT                        TABLE
+AUTHOR                         TABLE
+TEACHER                        TABLE
+STUDENT_TAB                    TABLE
+
+10 rows selected.
+
+SQL> SELECT CONSTRAINT_NAME, CONSTRAINT_TYPE
+  2  FROM USER_CONSTRAINT;
+FROM USER_CONSTRAINT
+     *
+ERROR at line 2:
+ORA-00942: table or view does not exist
+
+
+SQL> SELECT CONSTRAINT_NAME, CONSTRAINT_TYPE
+  2  FRON TEACHER;
+FRON TEACHER
+     *
+ERROR at line 2:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> SELECT CONSTRAINT_NAME, CONSTRAINT_TYPE
+  2  FROM TEACHER;
+SELECT CONSTRAINT_NAME, CONSTRAINT_TYPE
+                        *
+ERROR at line 1:
+ORA-00904: "CONSTRAINT_TYPE": invalid identifier
+
+
+SQL> select constraint_name,constraint_type 
+  2  from user_constraints
+  3  where table_name = TEACHER;
+where table_name = TEACHER
+                   *
+ERROR at line 3:
+ORA-00904: "TEACHER": invalid identifier
+
+
+SQL>  select constraint_name,constraint_type 
+  2   from user_constraints
+  3   where table_name = 'TEACHER';
+
+CONSTRAINT_NAME                C
+------------------------------ -
+SYS_C006032                    C
+SYS_C006033                    C
+SAL_C                          C
+TID_PK                         P
+
+SQL> SET LINES 100 PAGES  100
+SQL>  select constraint_name,constraint_type 
+  2   from user_constraints
+  3   where table_name = 'TEACHER';
+
+CONSTRAINT_NAME                C
+------------------------------ -
+SYS_C006032                    C
+SYS_C006033                    C
+SAL_C                          C
+TID_PK                         P
+
+SQL> DESC STUDENT_TAB;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ STID                                                  NOT NULL VARCHAR2(6)
+ STNAME                                                NOT NULL VARCHAR2(25)
+ BRANCH                                                NOT NULL VARCHAR2(10)
+ PH_NO                                                          NUMBER(10)
+ AGE                                                   NOT NULL NUMBER(2)
+ TID                                                            VARCHAR2(3)
+
+SQL> select constraint_name,constraint_type 
+  2  from user_constraints
+  3  where table_name = 'STUDENT_TAB';
+
+CONSTRAINT_NAME                C
+------------------------------ -
+SYS_C006037                    C
+SYS_C006038                    C
+SYS_C006039                    C
+SYS_C006040                    C
+PH_C                           C
+AGE_C                          C
+STID_PK                        P
+PH_U                           U
+TID_FK                         R
+
+9 rows selected.
+
+SQL>  SELECT CONSTRAINT_NAME, CONSTRAINT_TYPE
+  2   FROM USER_CONSTRAINTS;
+
+CONSTRAINT_NAME                C
+------------------------------ -
+SYS_C006037                    C
+SYS_C006038                    C
+SYS_C006039                    C
+SYS_C006040                    C
+PH_C                           C
+AGE_C                          C
+TID_FK                         R
+BIN$Rzsy2TCnQQqrq7xj0xWCbQ==$0 C
+BIN$xicLijcIRa2AqJ27MkwHUA==$0 C
+BIN$cVxeHkKhTFGnqEslXksgzQ==$0 C
+BIN$6cPML4vVSt6i+fNXCfv2tw==$0 C
+SYS_C006032                    C
+SYS_C006033                    C
+SAL_C                          C
+SYS_C005805                    C
+SYS_C005806                    C
+SYS_C005809                    R
+SYS_C005802                    C
+SYS_C005803                    C
+FK_DEPTNO                      R
+PK_DEPT                        P
+PK_EMP                         P
+SYS_C005804                    P
+SYS_C005807                    P
+SYS_C005808                    U
+BIN$rIPQ+FYxQwmX4zdd6/krRA==$0 P
+BIN$lM8ouJN2S3aTryUByfAm7Q==$0 U
+BIN$c/f2+PB1RAOklEE0nmterw==$0 P
+TID_PK                         P
+STID_PK                        P
+PH_U                           U
+
+31 rows selected.

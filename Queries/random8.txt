@@ -1,0 +1,541 @@
+SQL> select ename from emp where substr(ename, length/2);
+select ename from emp where substr(ename, length/2)
+                                                  *
+ERROR at line 1:
+ORA-00920: invalid relational operator
+
+
+SQL> SELECT SUBSTR(ENAME, 1, LENGTH(ENAME)/2);
+SELECT SUBSTR(ENAME, 1, LENGTH(ENAME)/2)
+                                       *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL>  SELECT SUBSTR(ENAME, 1, LENGTH(ENAME)/2) FROM EMP;
+
+SUBSTR(ENA
+----------
+SM
+AL
+WA
+JO
+MAR
+BL
+CL
+SC
+KI
+TUR
+AD
+
+SUBSTR(ENA
+----------
+JA
+FO
+MIL
+
+14 rows selected.
+
+SQL> SELECT SUBSTR(ENAME, 1,4) FROM EMP;
+
+SUBS
+----
+SMIT
+ALLE
+WARD
+JONE
+MART
+BLAK
+CLAR
+SCOT
+KING
+TURN
+ADAM
+
+SUBS
+----
+JAME
+FORD
+MILL
+
+14 rows selected.
+
+SQL> SELECT SUBSTR(ENAME, LENGHT(ENAME)/2+1, LENGHT(ENAME)) FROM EMP;
+SELECT SUBSTR(ENAME, LENGHT(ENAME)/2+1, LENGHT(ENAME)) FROM EMP
+                                        *
+ERROR at line 1:
+ORA-00904: "LENGHT": invalid identifier
+
+
+SQL>  SELECT SUBSTR(ENAME, LENGHT(ENAME)/2+1) FROM EMP;
+ SELECT SUBSTR(ENAME, LENGHT(ENAME)/2+1) FROM EMP
+                      *
+ERROR at line 1:
+ORA-00904: "LENGHT": invalid identifier
+
+
+SQL>  SELECT SUBSTR(ENAME, 1, LENGTH(ENAME)/2) FROM EMP;
+
+SUBSTR(ENA
+----------
+SM
+AL
+WA
+JO
+MAR
+BL
+CL
+SC
+KI
+TUR
+AD
+
+SUBSTR(ENA
+----------
+JA
+FO
+MIL
+
+14 rows selected.
+
+SQL> SELECT SUBSTR(ENAME,LENGTH(ENAME)/2) FROM EMP;
+
+SUBSTR(ENA
+----------
+MITH
+LLEN
+ARD
+ONES
+RTIN
+LAKE
+LARK
+COTT
+ING
+RNER
+DAMS
+
+SUBSTR(ENA
+----------
+AMES
+ORD
+LLER
+
+14 rows selected.
+
+SQL>  SELECT SUBSTR(ENAME,LENGTH(ENAME)/2+1) FROM EMP;
+
+SUBSTR(ENA
+----------
+ITH
+LEN
+RD
+NES
+TIN
+AKE
+ARK
+OTT
+NG
+NER
+AMS
+
+SUBSTR(ENA
+----------
+MES
+RD
+LER
+
+14 rows selected.
+
+SQL> SELECT SUBSTR(ENAME, LENGHT(ENAME)/2+1) FROM EMP;
+SELECT SUBSTR(ENAME, LENGHT(ENAME)/2+1) FROM EMP
+                     *
+ERROR at line 1:
+ORA-00904: "LENGHT": invalid identifier
+
+
+SQL> SELECT SUBSTR(ENAME,LENGHT(ENAME)/2+1) FROM EMP;
+SELECT SUBSTR(ENAME,LENGHT(ENAME)/2+1) FROM EMP
+                    *
+ERROR at line 1:
+ORA-00904: "LENGHT": invalid identifier
+
+
+SQL> SELECT INSTR('QSPIDERS','S',3,2) FROM DUAL;
+
+INSTR('QSPIDERS','S',3,2)
+-------------------------
+                        0
+
+SQL> SELECT INSTR('QSPIDERS','SP') FROM DUAL;
+
+INSTR('QSPIDERS','SP')
+----------------------
+                     2
+
+SQL> SELECT INSTR('TWHSPYWYWSPUQ','SP') FROM DUAL;
+
+INSTR('TWHSPYWYWSPUQ','SP')
+---------------------------
+                          4
+
+SQL> SELECT INSTR('TWHSPYWYWSPUQ','SP',1) FROM DUAL;
+
+INSTR('TWHSPYWYWSPUQ','SP',1)
+-----------------------------
+                            4
+
+SQL>  SELECT INSTR('TWHSPYWYWSPUQ','SP',1,2)FROM DUAL;
+
+INSTR('TWHSPYWYWSPUQ','SP',1,2)
+-------------------------------
+                             10
+
+SQL> SELECT INSTR('QSPIDERSTS','S',1) FROM DUAL;
+
+INSTR('QSPIDERSTS','S',1)
+-------------------------
+                        2
+
+SQL> SELECT INSTR('QSPIDERS','DS',1,1) FROM DUAL;
+
+INSTR('QSPIDERS','DS',1,1)
+--------------------------
+                         0
+
+SQL>  SELECT INSTR('TWHSPYWYWSPUQ','SP',1,1)FROM DUAL;
+
+INSTR('TWHSPYWYWSPUQ','SP',1,1)
+-------------------------------
+                              4
+
+SQL> SELECT INSTR('QSPIDERS','I',1,2) FROM DUAL;
+
+INSTR('QSPIDERS','I',1,2)
+-------------------------
+                        0
+
+SQL> SET LINES 100 PAGES 100
+SQL>  SELECT SUBSTR(ENAME,LENGTH(ENAME)/2+1) FROM EMP;
+
+SUBSTR(ENA
+----------
+ITH
+LEN
+RD
+NES
+TIN
+AKE
+ARK
+OTT
+NG
+NER
+AMS
+MES
+RD
+LER
+
+14 rows selected.
+
+SQL> SESLECT REPLACE('QSPIDERS','S') FROM DUAL;
+SP2-0734: unknown command beginning "SESLECT RE..." - rest of line ignored.
+SQL> SELECT  REPLACE('QSPIDERS','S') FROM DUAL;
+
+REPLAC
+------
+QPIDER
+
+SQL> SELECT  REPLACE('QSPIDERS','T','S') FROM DUAL;
+
+REPLACE(
+--------
+QSPIDERS
+
+SQL> SELECT TO_CHAR(SYSDATE, 'DAY,DD,MM,YYYY,HH12,MI,SS') FROM DUAL;
+
+TO_CHAR(SYSDATE,'DAY,DD,MM,YY
+-----------------------------
+FRIDAY   ,21,06,2024,05,54,29
+
+SQL> 
+
+
+22/06/2024
+
+SQL> SELECT ENAME FROM EMP WHERE TO_CHAR(HIREDATE, 'MONTH')= FEBRUARY;
+SELECT ENAME FROM EMP WHERE TO_CHAR(HIREDATE, 'MONTH')= FEBRUARY
+                                                        *
+ERROR at line 1:
+ORA-00904: "FEBRUARY": invalid identifier
+
+
+SQL> SELECT ENAME FROM EMP WHERE TO_CHAR(HIREDATE, 'MONTH')=' FEBRUARY';
+
+no rows selected
+
+SQL> 
+
+SQL> SELECT ENAME FROM EMP WHERE TO_CHAR(HIREDATE,'MONTH')='FEBRUARY';
+
+no rows selected
+
+SQL>  SELECT ENAME FROM EMP WHERE TO_CHAR(HIREDATE,'MON')='FEBRUARY';
+
+no rows selected
+
+SQL> 
+SQL> 
+SQL> SELECT ENAME FROM EMP WHERE TO_CHAR(HIREDATE,'MON')='FEB';
+
+ENAME
+----------
+ALLEN
+WARD
+
+SQL> SELECT ENAME FROM EMP WHERE TO_CHAR(HIREDATE,YYYY)=1981;
+SELECT ENAME FROM EMP WHERE TO_CHAR(HIREDATE,YYYY)=1981
+                                             *
+ERROR at line 1:
+ORA-00904: "YYYY": invalid identifier
+
+
+SQL> SELECT ENAME FROM EMP WHERE TO_CHAR(HIREDATE,'YYYY')='1981';
+
+ENAME
+----------
+ALLEN
+WARD
+JONES
+MARTIN
+BLAKE
+CLARK
+KING
+TURNER
+JAMES
+FORD
+
+10 rows selected.
+
+SQL> SELECT ENAME FROM EMP WHERE TO_CHAR(HIREDATE,'YYYY')=1981;
+
+ENAME
+----------
+ALLEN
+WARD
+JONES
+MARTIN
+BLAKE
+CLARK
+KING
+TURNER
+JAMES
+FORD
+
+10 rows selected.
+
+SQL>  SELECT ENAME FROM EMP WHERE TO_CHAR(HIREDATE,'DAY')='MONDAY';
+
+no rows selected
+
+SQL>  SELECT ENAME FROM EMP WHERE TO_CHAR(HIREDATE,'DY')='MON';
+
+ENAME
+----------
+MARTIN
+
+SQL> SELECT SAL+COMM FROM EMP;
+
+  SAL+COMM
+----------
+
+      1900
+      1750
+
+      2650
+
+
+
+
+      1500
+
+
+  SAL+COMM
+----------
+
+
+
+
+14 rows selected.
+
+SQL> SELECT SAL+COMM(COMM,0) FROM EMP;
+SELECT SAL+COMM(COMM,0) FROM EMP
+           *
+ERROR at line 1:
+ORA-00904: "COMM": invalid identifier
+
+
+SQL> SELECT SAL+NVL(COMM,0) FROM EMP;
+
+SAL+NVL(COMM,0)
+---------------
+            800
+           1900
+           1750
+           2975
+           2650
+           2850
+           2450
+           3000
+           5000
+           1500
+           1100
+
+SAL+NVL(COMM,0)
+---------------
+            950
+           3000
+           1300
+
+14 rows selected.
+
+SQL> SELECT ENAME||COMM FROM EMP;
+
+ENAME||COMM
+--------------------------------------------------
+SMITH
+ALLEN300
+WARD500
+JONES
+MARTIN1400
+BLAKE
+CLARK
+SCOTT
+KING
+TURNER0
+ADAMS
+
+ENAME||COMM
+--------------------------------------------------
+JAMES
+FORD
+MILLER
+
+14 rows selected.
+
+SQL> SELECT ENAME||'IS EARNING'||'COMM'||NVL(COMM,0) FROM EMP;
+
+ENAME||'ISEARNING'||'COMM'||NVL(COMM,0)
+----------------------------------------------------------------
+SMITHIS EARNINGCOMM0
+ALLENIS EARNINGCOMM300
+WARDIS EARNINGCOMM500
+JONESIS EARNINGCOMM0
+MARTINIS EARNINGCOMM1400
+BLAKEIS EARNINGCOMM0
+CLARKIS EARNINGCOMM0
+SCOTTIS EARNINGCOMM0
+KINGIS EARNINGCOMM0
+TURNERIS EARNINGCOMM0
+ADAMSIS EARNINGCOMM0
+
+ENAME||'ISEARNING'||'COMM'||NVL(COMM,0)
+----------------------------------------------------------------
+JAMESIS EARNINGCOMM0
+FORDIS EARNINGCOMM0
+MILLERIS EARNINGCOMM0
+
+14 rows selected.
+
+SQL>  SELECT ENAME||'IS EARNING'||'COMM'||NVL(COMM,0) FROM EMP;
+
+ENAME||'ISEARNING'||'COMM'||NVL(COMM,0)
+----------------------------------------------------------------
+SMITHIS EARNINGCOMM0
+ALLENIS EARNINGCOMM300
+WARDIS EARNINGCOMM500
+JONESIS EARNINGCOMM0
+MARTINIS EARNINGCOMM1400
+BLAKEIS EARNINGCOMM0
+CLARKIS EARNINGCOMM0
+SCOTTIS EARNINGCOMM0
+KINGIS EARNINGCOMM0
+TURNERIS EARNINGCOMM0
+ADAMSIS EARNINGCOMM0
+
+ENAME||'ISEARNING'||'COMM'||NVL(COMM,0)
+----------------------------------------------------------------
+JAMESIS EARNINGCOMM0
+FORDIS EARNINGCOMM0
+MILLERIS EARNINGCOMM0
+
+14 rows selected.
+
+SQL> SELECT ENAME||'IS EARNING COMMISION'||NVL(COMM,0) FROM EMP;
+
+ENAME||'ISEARNINGCOMMISION'||NVL(COMM,0)
+----------------------------------------------------------------------
+SMITHIS EARNING COMMISION0
+ALLENIS EARNING COMMISION300
+WARDIS EARNING COMMISION500
+JONESIS EARNING COMMISION0
+MARTINIS EARNING COMMISION1400
+BLAKEIS EARNING COMMISION0
+CLARKIS EARNING COMMISION0
+SCOTTIS EARNING COMMISION0
+KINGIS EARNING COMMISION0
+TURNERIS EARNING COMMISION0
+ADAMSIS EARNING COMMISION0
+
+ENAME||'ISEARNINGCOMMISION'||NVL(COMM,0)
+----------------------------------------------------------------------
+JAMESIS EARNING COMMISION0
+FORDIS EARNING COMMISION0
+MILLERIS EARNING COMMISION0
+
+14 rows selected.
+
+SQL> SELECT ENAME||'IS EARNING COMMISION '||NVL(COMM,0) FROM EMP;
+
+ENAME||'ISEARNINGCOMMISION'||NVL(COMM,0)
+-----------------------------------------------------------------------
+SMITHIS EARNING COMMISION 0
+ALLENIS EARNING COMMISION 300
+WARDIS EARNING COMMISION 500
+JONESIS EARNING COMMISION 0
+MARTINIS EARNING COMMISION 1400
+BLAKEIS EARNING COMMISION 0
+CLARKIS EARNING COMMISION 0
+SCOTTIS EARNING COMMISION 0
+KINGIS EARNING COMMISION 0
+TURNERIS EARNING COMMISION 0
+ADAMSIS EARNING COMMISION 0
+
+ENAME||'ISEARNINGCOMMISION'||NVL(COMM,0)
+-----------------------------------------------------------------------
+JAMESIS EARNING COMMISION 0
+FORDIS EARNING COMMISION 0
+MILLERIS EARNING COMMISION 0
+
+14 rows selected.
+
+SQL> SELECT COUNT(*), DEPTNO FROM EMP GROUP BY DEPTNO HAVING COUNT(*)>=4;
+
+  COUNT(*)     DEPTNO
+---------- ----------
+         6         30
+         5         20
+
+SQL> SELECT SAL,JOB FROM EMP WHERE SAL>2000 GROUP BY JOB HAVING MAX(SAL)>2600;
+SELECT SAL,JOB FROM EMP WHERE SAL>2000 GROUP BY JOB HAVING MAX(SAL)>2600
+       *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression
+
+
+SQL> SELECT ENAME FROM EMP GROUP BY SAL HAVING COUNT(*)>1;
+SELECT ENAME FROM EMP GROUP BY SAL HAVING COUNT(*)>1
+       *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression
+
+
+SQL> 

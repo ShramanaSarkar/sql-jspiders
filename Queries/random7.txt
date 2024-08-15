@@ -1,0 +1,214 @@
+SQL> select * from tab;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+DEPT                           TABLE                                            
+EMP                            TABLE                                            
+BONUS                          TABLE                                            
+SALGRADE                       TABLE                                            
+BOOK                           TABLE                                            
+COURSE                         TABLE                                            
+STUDENT                        TABLE                                            
+AUTHOR                         TABLE                                            
+
+8 rows selected.
+
+SQL> select * from student;
+
+       SID SNAME             AGE GENDER       MOBILENO DOB                      
+---------- ---------- ---------- ---------- ---------- ---------                
+EMAILID                     CID                                                 
+-------------------- ----------                                                 
+      2002 SONAL              22 FEMALE     5376783839 05-SEP-02                
+SONA05@MAIL                1003                                                 
+.COM                                                                            
+                                                                                
+      2003 ISHA               21 FEMALE     7654352345 23-AUG-01                
+ISHA23@MAIL.               1000                                                 
+COM                                                                             
+                                                                                
+
+SQL> SELECT MOD(457,6) FROM DUAL;
+
+MOD(457,6)                                                                      
+----------                                                                      
+         1                                                                      
+
+SQL> SELECT ENAME, LENGTH(ENAME) FROM EMP;
+
+ENAME      LENGTH(ENAME)                                                        
+---------- -------------                                                        
+SMITH                  5                                                        
+ALLEN                  5                                                        
+WARD                   4                                                        
+JONES                  5                                                        
+MARTIN                 6                                                        
+BLAKE                  5                                                        
+CLARK                  5                                                        
+SCOTT                  5                                                        
+KING                   4                                                        
+TURNER                 6                                                        
+ADAMS                  5                                                        
+
+ENAME      LENGTH(ENAME)                                                        
+---------- -------------                                                        
+JAMES                  5                                                        
+FORD                   4                                                        
+MILLER                 6                                                        
+
+14 rows selected.
+
+SQL> SELECT ENAME, UPPER(ENAME) FROM EMP;
+
+ENAME      UPPER(ENAM                                                           
+---------- ----------                                                           
+SMITH      SMITH                                                                
+ALLEN      ALLEN                                                                
+WARD       WARD                                                                 
+JONES      JONES                                                                
+MARTIN     MARTIN                                                               
+BLAKE      BLAKE                                                                
+CLARK      CLARK                                                                
+SCOTT      SCOTT                                                                
+KING       KING                                                                 
+TURNER     TURNER                                                               
+ADAMS      ADAMS                                                                
+
+ENAME      UPPER(ENAM                                                           
+---------- ----------                                                           
+JAMES      JAMES                                                                
+FORD       FORD                                                                 
+MILLER     MILLER                                                               
+
+14 rows selected.
+
+SQL> SELECT ENAME, LOWER(ENAME) FROM EMP;
+
+ENAME      LOWER(ENAM                                                           
+---------- ----------                                                           
+SMITH      smith                                                                
+ALLEN      allen                                                                
+WARD       ward                                                                 
+JONES      jones                                                                
+MARTIN     martin                                                               
+BLAKE      blake                                                                
+CLARK      clark                                                                
+SCOTT      scott                                                                
+KING       king                                                                 
+TURNER     turner                                                               
+ADAMS      adams                                                                
+
+ENAME      LOWER(ENAM                                                           
+---------- ----------                                                           
+JAMES      james                                                                
+FORD       ford                                                                 
+MILLER     miller                                                               
+
+14 rows selected.
+
+SQL>  SELECT ENAME, INITCAP(ENAME) FROM EMP;
+
+ENAME      INITCAP(EN                                                           
+---------- ----------                                                           
+SMITH      Smith                                                                
+ALLEN      Allen                                                                
+WARD       Ward                                                                 
+JONES      Jones                                                                
+MARTIN     Martin                                                               
+BLAKE      Blake                                                                
+CLARK      Clark                                                                
+SCOTT      Scott                                                                
+KING       King                                                                 
+TURNER     Turner                                                               
+ADAMS      Adams                                                                
+
+ENAME      INITCAP(EN                                                           
+---------- ----------                                                           
+JAMES      James                                                                
+FORD       Ford                                                                 
+MILLER     Miller                                                               
+
+14 rows selected.
+
+SQL> SELECT ENAME, LENGTH(ENAME)=4 FROM EMP;
+SELECT ENAME, LENGTH(ENAME)=4 FROM EMP
+                           *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT LENGTH(4) FROM EMP;
+
+ LENGTH(4)                                                                      
+----------                                                                      
+         1                                                                      
+         1                                                                      
+         1                                                                      
+         1                                                                      
+         1                                                                      
+         1                                                                      
+         1                                                                      
+         1                                                                      
+         1                                                                      
+         1                                                                      
+         1                                                                      
+
+ LENGTH(4)                                                                      
+----------                                                                      
+         1                                                                      
+         1                                                                      
+         1                                                                      
+
+14 rows selected.
+
+SQL> SELECT ENAME FROM EMP WHERE ENAME LENGTH(ENAME)=4;
+SELECT ENAME FROM EMP WHERE ENAME LENGTH(ENAME)=4
+                                  *
+ERROR at line 1:
+ORA-00920: invalid relational operator 
+
+
+SQL> SELECT ENAME FROM EMP WHERE LENGTH(ENAME)=4;
+
+ENAME                                                                           
+----------                                                                      
+WARD                                                                            
+KING                                                                            
+FORD                                                                            
+
+SQL> SELECT ENAME FROM EMP WHERE MOD(LENGTH(ENAME))=0;
+SELECT ENAME FROM EMP WHERE MOD(LENGTH(ENAME))=0
+                            *
+ERROR at line 1:
+ORA-00909: invalid number of arguments 
+
+
+SQL> SELECT ENAME FROM EMP WHERE MOD(LENGTH(ENAME),2)=0;
+
+ENAME                                                                           
+----------                                                                      
+WARD                                                                            
+MARTIN                                                                          
+KING                                                                            
+TURNER                                                                          
+FORD                                                                            
+MILLER                                                                          
+
+6 rows selected.
+
+SQL>  SELECT ENAME FROM EMP WHERE MOD(LENGTH(ENAME),2)!=0;
+
+ENAME                                                                           
+----------                                                                      
+SMITH                                                                           
+ALLEN                                                                           
+JONES                                                                           
+BLAKE                                                                           
+CLARK                                                                           
+SCOTT                                                                           
+ADAMS                                                                           
+JAMES                                                                           
+
+8 rows selected.
+
+SQL> SPOOL OFF
